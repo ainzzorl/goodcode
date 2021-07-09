@@ -37,4 +37,4 @@ Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=i
 
 # Contributing
 
-If you know a code example the satisfies the criteria above, suggest adding it to the collection by creating an issue.
+If you know a code example the satisfies the criteria above, suggest adding it to the collection by [creating an issue](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
