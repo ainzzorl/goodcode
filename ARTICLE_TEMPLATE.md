@@ -1,6 +1,7 @@
 
 # TITLE
 
+* **Status**: *DRAFT|PUBLISHED|OBSOLETE*
 * **Project name**: *e.g. Project Foo*
 * **Example name**: *e.g. Project Foo's implementation of bar algorithm.*
 * **Project home page**: *e.g. https://github.com/foo/bar*
