@@ -16,14 +16,24 @@ Here we offer a more straightforward way to learn from open-source projects. We 
 
 Please note that the annotations are written by people who did not author the code they are describing. The article author's understanding of the code can be incomplete or even completely wrong. Your discretion is adviced.
 
-# Examples
+# Articles
 
-The collections is empty as of right now. Here are a few examples of code we are working on annotating and adding to it:
-* [Homebrew - how it downloads and unpacks code from a variety of sources](https://github.com/Homebrew/brew/blob/master/Library/Homebrew/download_strategy.rb)
-* [AWS CDK - calculating diff between infrastructure templates](https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/cloudformation-diff)
-* [Terraform - graph algorithms](https://github.com/hashicorp/terraform/blob/main/internal/dag/dag.go)
-* [ErrorProne - utility for testing bug checkers](https://github.com/google/error-prone/blob/master/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java)
-* [ChaosMonkey - database access layer](https://github.com/Netflix/chaosmonkey/blob/master/mysql/mysql.go)
+The collection is small but growing.
+
+| Title     | Project | Language(s) | Status
+| ----------- | ----------- | -- | -- |
+| [Homebrew - downloading software from a variety of sources](./articles/homebrew-download-strategy.md)      | [Homebrew](https://github.com/Homebrew/brew) | Ruby   | DRAFT |
+| [ErrorProne - testing bug checkers](./articles/error-prone-test-helper.md)      | [ErrorProne](github.com/google/error-prone/) | Java   | DRAFT |
+
+### Planned
+
+| Title     | Project | Language(s)
+| ----------- | ----------- | -- |
+| [Terraform - Algorithms on graphs](https://github.com/ainzzorl/goodcode/issues/3)      | [Terraform](https://github.com/hashicorp/terraform) | Go
+| [Chaos Monkey - Database access layer](https://github.com/ainzzorl/goodcode/issues/4)      | [Chaos Monkey](https://github.com/Netflix/chaosmonkey) | Go
+| [AWS CDK - Diff computation](https://github.com/ainzzorl/goodcode/issues/5)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript
+
+Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+example%22).
 
 # Contributing
 
