@@ -23,7 +23,7 @@ The collection is small but growing.
 | Title     | Project | Language(s) | Status
 | ----------- | ----------- | -- | -- |
 | [Homebrew - downloading software from a variety of sources](./articles/homebrew-download-strategy.md)      | [Homebrew](https://github.com/Homebrew/brew) | Ruby   | DRAFT |
-| [ErrorProne - testing bug checkers](./articles/error-prone-test-helper.md)      | [ErrorProne](github.com/google/error-prone/) | Java   | DRAFT |
+| [ErrorProne - testing bug checkers](./articles/error-prone-test-helper.md)      | [ErrorProne](https://github.com/google/error-prone/) | Java   | DRAFT |
 
 ### Planned
 
