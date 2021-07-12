@@ -32,6 +32,7 @@ The collection is small but growing.
 | [Terraform - Algorithms on graphs](https://github.com/ainzzorl/goodcode/issues/3)      | [Terraform](https://github.com/hashicorp/terraform) | Go
 | [Chaos Monkey - Database access layer](https://github.com/ainzzorl/goodcode/issues/4)      | [Chaos Monkey](https://github.com/Netflix/chaosmonkey) | Go
 | [AWS CDK - Diff computation](https://github.com/ainzzorl/goodcode/issues/5)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript
+| [Stockfish - Chess board representation](https://github.com/ainzzorl/goodcode/issues/6)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++
 
 Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+example%22).
 
