@@ -29,6 +29,10 @@ assignees: ''
 
 *What makes the example interesting? How is it instructive? What can the reader learn from it?*
 
+## Related work
+
+*Are you aware of any existing articles/publications/videos/walkthroughs dedicated to this piece of code?*
+
 ## Other
 
 *Anything else you want to add.*
