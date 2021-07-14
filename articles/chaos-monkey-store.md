@@ -1,5 +1,5 @@
 
-# TITLE
+# Chaos Monkey's MySQL-backed store for schedules and terminations
 
 * **Status**: DRAFT
 * **Project name**: Chaos Monkey
