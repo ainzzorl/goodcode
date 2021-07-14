@@ -26,12 +26,12 @@ The collection is small but growing.
 | [ErrorProne - Testing bug checkers](./articles/error-prone-test-helper.md)      | [ErrorProne](https://github.com/google/error-prone/) | Java   | DRAFT |
 | [Terraform - Algorithms on graphs](./articles/terraform-graph-algorithms.md)      | [Terraform](https://github.com/hashicorp/terraform) | Go | DRAFT |
 | [Chaos Monkey - Database access layer](./articles/chaos-monkey-store.md)      | [Chaos Monkey](https://github.com/Netflix/chaosmonkey) | Go | DRAFT
+| [AWS CDK - Diff computation](./articles/aws-cdk-template-diff.md)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript | DRAFT
 
 ### Planned
 
 | Title     | Project | Language(s)
 | ----------- | ----------- | -- |
-| [AWS CDK - Diff computation](https://github.com/ainzzorl/goodcode/issues/5)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript
 | [Stockfish - Chess board representation](https://github.com/ainzzorl/goodcode/issues/6)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++
 | [AWS CLI - Shorthand parser](https://github.com/ainzzorl/goodcode/issues/7)      | [AWS CLI](https://github.com/aws/aws-cli) | Python
 
