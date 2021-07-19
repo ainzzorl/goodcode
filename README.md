@@ -27,6 +27,7 @@ The collection is small but growing.
 | [Terraform - Algorithms on graphs](./articles/terraform-graph-algorithms.md)      | [Terraform](https://github.com/hashicorp/terraform) | Go | DRAFT |
 | [Chaos Monkey - Database access layer](./articles/chaos-monkey-store.md)      | [Chaos Monkey](https://github.com/Netflix/chaosmonkey) | Go | DRAFT
 | [AWS CDK - Diff computation](./articles/aws-cdk-template-diff.md)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript | DRAFT
+| [Stockfish - Board representation](./articles/stockfish-board-representation.md)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++ | DRAFT
 
 ### Planned
 
