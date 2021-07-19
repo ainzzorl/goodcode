@@ -28,13 +28,12 @@ The collection is small but growing.
 | [Chaos Monkey - Database access layer](./articles/chaos-monkey-store.md)      | [Chaos Monkey](https://github.com/Netflix/chaosmonkey) | Go | DRAFT
 | [AWS CDK - Diff computation](./articles/aws-cdk-template-diff.md)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript | DRAFT
 | [Stockfish - Board representation](./articles/stockfish-board-representation.md)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++ | DRAFT
+| [AWS CLI - Shorthand parser](./articles/aws-cli-shorthand-parser.md)      | [AWS CLI](https://github.com/aws/aws-cli) | Python | DRAFT
 
 ### Planned
 
 | Title     | Project | Language(s)
 | ----------- | ----------- | -- |
-| [Stockfish - Chess board representation](https://github.com/ainzzorl/goodcode/issues/6)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++
-| [AWS CLI - Shorthand parser](https://github.com/ainzzorl/goodcode/issues/7)      | [AWS CLI](https://github.com/aws/aws-cli) | Python
 
 
 Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+example%22).
