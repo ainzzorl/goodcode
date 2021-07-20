@@ -30,6 +30,7 @@ The collection is small but growing.
 | [Stockfish - Board representation](./articles/stockfish-board-representation.md)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++ | DRAFT
 | [AWS CLI - Shorthand parser](./articles/aws-cli-shorthand-parser.md)      | [AWS CLI](https://github.com/aws/aws-cli) | Python | DRAFT
 | [Bat - Decorations](./articles/bat-decorations.md)      | [Bat](https://github.com/sharkdp/bat) | Rust | DRAFT
+| [Httpie - Status reporting](./articles/httpie-status-reporting.md)      | [Httpie](https://github.com/httpie/httpie) | Python | DRAFT
 
 ### Planned
 
