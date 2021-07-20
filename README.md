@@ -29,6 +29,7 @@ The collection is small but growing.
 | [AWS CDK - Diff computation](./articles/aws-cdk-template-diff.md)      | [AWS CDK](https://github.com/aws/aws-cdk) | TypeScript | DRAFT
 | [Stockfish - Board representation](./articles/stockfish-board-representation.md)      | [Stockfish](https://github.com/official-stockfish/Stockfish) | C++ | DRAFT
 | [AWS CLI - Shorthand parser](./articles/aws-cli-shorthand-parser.md)      | [AWS CLI](https://github.com/aws/aws-cli) | Python | DRAFT
+| [Bat - Decorations](./articles/bat-decorations.md)      | [Bat](https://github.com/sharkdp/bat) | Rust | DRAFT
 
 ### Planned
 
