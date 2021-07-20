@@ -1,4 +1,3 @@
-
 # TITLE
 
 * **Status**: *DRAFT|PUBLISHED|OBSOLETE*
