@@ -37,6 +37,11 @@ The collection is small but growing.
 
 | Title     | Project | Language(s)
 | ----------- | ----------- | -- |
+| [Spark - Cross Validation](https://github.com/ainzzorl/goodcode/issues/10)      | [Spark](https://github.com/apache/spark) | Scala
+| [Lucene - Rate limiting](https://github.com/ainzzorl/goodcode/issues/13)      | [Lucene](https://github.com/apache/lucene) | Java
+| [ZooKeeper - Snapshot comparison](https://github.com/ainzzorl/goodcode/issues/17)      | [ZooKeeper](https://github.com/apache/zookeeper) | Java
+| [ZooKeeper - Client connection](https://github.com/ainzzorl/goodcode/issues/18)      | [ZooKeeper](https://github.com/apache/zookeeper) | Java
+| [Ionic Framework - Gestures](https://github.com/ainzzorl/goodcode/issues/19)      | [Ionic Framework](https://github.com/ainzzorl/goodcode/issues/19) | TypeScript
 
 
 Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+example%22).
