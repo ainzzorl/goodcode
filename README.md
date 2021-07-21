@@ -40,6 +40,26 @@ The collection is small but growing.
 
 Also see [all proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+example%22).
 
+# FAQ
+
+### Who is this project for?
+
+Software practicioners and intermediate+ learners of programming.
+
+The reader is expected to be able to read non-trivial code in the language used by the example. Most examples expect little domain knowledge and provide context necessary to understand them.
+
+### What can I learn from this?
+
+* Style and best practices from prominent open-source projects.
+* Applications of common patterns.
+* Battle-tested solutions to typical problems.
+
+### Who writes these articles?
+
+The founder of the project, [ainzzorl](https://github.com/ainzzorl/goodcode). Future content is expected to be crowd-sourced. Read more about [contributing to the project](#Contributing).
+
+We believe that the code speaks for itself, though. Our job is to find interesting examples, provide necessary context and point out certain details.
+
 # Contributing
 
-If you know a code example the satisfies the criteria above, suggest adding it to the collection by [creating an issue](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
+If you know a code example that satisfies the criteria above, suggest adding it to the collection by [creating an issue](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
