@@ -1,4 +1,4 @@
-theme: jekyll-theme-slate
+#theme: jekyll-theme-slate
 
 # # Welcome to Jekyll!
 # #
@@ -44,14 +44,30 @@ theme: jekyll-theme-slate
 # # Excluded items can be processed by explicitly listing the directories or
 # # their entries' file path in the `include:` list.
 # #
-# # exclude:
-# #   - .sass-cache/
-# #   - .jekyll-cache/
-# #   - gemfiles/
-# #   - Gemfile
-# #   - Gemfile.lock
-# #   - node_modules/
-# #   - vendor/bundle/
-# #   - vendor/cache/
-# #   - vendor/gems/
-# #   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+theme: "just-the-docs"
+
+# Define Jekyll collections
+collections:
+  # Define a collection named "docs", its documents reside in the "_docs" directory
+  articles:
+    permalink: "/:collection/:path/"
+    output: true
+
+just_the_docs:
+  collections:
+    articles:
+      name: Articles
+      nav_exclude: false
+      search_exclude: false

@@ -1,3 +1,6 @@
+---
+title:  "Chess board representation in Stockfish"
+---
 
 # Chess board representation in Stockfish
 

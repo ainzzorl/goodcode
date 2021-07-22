@@ -1,3 +1,7 @@
+---
+title:  "Chaos Monkey's MySQL-backed store for schedules and terminations"
+---
+
 
 # Chaos Monkey's MySQL-backed store for schedules and terminations
 

@@ -1,3 +1,7 @@
+---
+title:  "Reporting Download Progress in Httpie"
+---
+
 # Reporting Download Progress in Httpie
 
 * **Status**: DRAFT

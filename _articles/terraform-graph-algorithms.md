@@ -1,3 +1,7 @@
+---
+title:  "Graph Algorithms in Terraform"
+---
+
 # Graph Algorithms in Terraform
 
 * **Status**: DRAFT

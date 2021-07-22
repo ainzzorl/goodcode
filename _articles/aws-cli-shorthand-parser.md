@@ -1,3 +1,7 @@
+---
+title:  "AWS CLI's Shorthand Parser"
+---
+
 # AWS CLI's Shorthand Parser
 
 * **Status**: DRAFT

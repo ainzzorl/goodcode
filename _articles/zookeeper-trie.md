@@ -1,3 +1,7 @@
+---
+title:  "ZooKeeper - Trie"
+---
+
 # ZooKeeper - Trie
 
 * **Status**: DRAFT

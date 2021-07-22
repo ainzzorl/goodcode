@@ -1,3 +1,7 @@
+---
+title:  "Testing bug checkers in ErrorProne"
+---
+
 # Testing bug checkers in ErrorProne
 
 * **Status**: DRAFT

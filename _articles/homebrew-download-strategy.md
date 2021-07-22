@@ -1,3 +1,6 @@
+---
+title:  "Downloading software from a variety of sources in Homebrew"
+---
 
 # Downloading software from a variety of sources in Homebrew
 

@@ -1,3 +1,6 @@
+---
+title:  "Computing diff between infrastructure templates in AWS CDK"
+---
 
 # Computing diff between infrastructure templates in AWS CDK
 
