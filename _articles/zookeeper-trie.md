@@ -1,5 +1,6 @@
 ---
 title:  "ZooKeeper - Trie"
+layout: default
 ---
 
 # ZooKeeper - Trie

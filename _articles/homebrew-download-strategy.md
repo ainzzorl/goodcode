@@ -1,5 +1,6 @@
 ---
 title:  "Downloading software from a variety of sources in Homebrew"
+layout: default
 ---
 
 # Downloading software from a variety of sources in Homebrew

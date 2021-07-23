@@ -1,5 +1,6 @@
 ---
 title:  "Computing diff between infrastructure templates in AWS CDK"
+layout: default
 ---
 
 # Computing diff between infrastructure templates in AWS CDK

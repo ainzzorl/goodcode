@@ -1,5 +1,6 @@
 ---
 title:  "Text decoration in Bat"
+layout: default
 ---
 
 # Text decoration in Bat

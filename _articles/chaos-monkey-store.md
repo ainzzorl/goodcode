@@ -1,5 +1,6 @@
 ---
 title:  "Chaos Monkey's MySQL-backed store for schedules and terminations"
+layout: default
 ---
 
 

@@ -1,5 +1,6 @@
 ---
 title:  "Chess board representation in Stockfish"
+layout: default
 ---
 
 # Chess board representation in Stockfish

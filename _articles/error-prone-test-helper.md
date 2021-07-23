@@ -1,5 +1,6 @@
 ---
 title:  "Testing bug checkers in ErrorProne"
+layout: default
 ---
 
 # Testing bug checkers in ErrorProne

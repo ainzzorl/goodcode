@@ -1,5 +1,6 @@
 ---
 title:  "Graph Algorithms in Terraform"
+layout: default
 ---
 
 # Graph Algorithms in Terraform

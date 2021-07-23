@@ -1,5 +1,6 @@
 ---
 title:  "AWS CLI's Shorthand Parser"
+layout: default
 ---
 
 # AWS CLI's Shorthand Parser

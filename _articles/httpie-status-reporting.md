@@ -1,5 +1,6 @@
 ---
 title:  "Reporting Download Progress in Httpie"
+layout: default
 ---
 
 # Reporting Download Progress in Httpie
