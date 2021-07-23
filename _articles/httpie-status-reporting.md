@@ -1,6 +1,9 @@
 ---
 title:  "Reporting Download Progress in Httpie"
 layout: default
+language: Python
+project: HTTPie
+tags: cli,status-reporting,spinner
 ---
 
 # Reporting Download Progress in Httpie

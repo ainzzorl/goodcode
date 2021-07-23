@@ -1,6 +1,9 @@
 ---
 title:  "ZooKeeper - Trie"
 layout: default
+language: Java
+tags: trie,data-structure,algorithm
+project: ZooKeeper
 ---
 
 # ZooKeeper - Trie

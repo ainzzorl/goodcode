@@ -1,6 +1,9 @@
 ---
 title:  "Downloading software from a variety of sources in Homebrew"
 layout: default
+language: Ruby
+project: Homebrew
+tags: strategy, template-method
 ---
 
 # Downloading software from a variety of sources in Homebrew

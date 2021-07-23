@@ -1,6 +1,9 @@
 ---
 title:  "Chess board representation in Stockfish"
 layout: default
+language: C++
+project: Stockfish
+tags: chess,bitboard
 ---
 
 # Chess board representation in Stockfish

@@ -1,6 +1,9 @@
 ---
 title:  "AWS CLI's Shorthand Parser"
 layout: default
+language: Python
+project: AWS CLI
+tags: cli,parsing,visitor
 ---
 
 # AWS CLI's Shorthand Parser

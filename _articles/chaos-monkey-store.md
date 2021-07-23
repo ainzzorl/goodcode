@@ -1,6 +1,9 @@
 ---
 title:  "Chaos Monkey's MySQL-backed store for schedules and terminations"
 layout: default
+language: Go
+project: Chaos Monkey
+tags: data-access,sql,dao
 ---
 
 

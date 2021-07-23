@@ -1,6 +1,9 @@
 ---
 title:  "Text decoration in Bat"
 layout: default
+language: Rust
+project: Bat
+tags: cli,decorator
 ---
 
 # Text decoration in Bat
