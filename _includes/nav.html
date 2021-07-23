@@ -65,9 +65,11 @@
           <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
         {%- endif -%}
         <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
-        <span>Language: {{ node.language }}</span>
-        <span>Tags: {{ tags }}</span>
-        <span>Project: {{ project }}</span>
+        <ul style="margin-left: 10px; list-style-type:none;">
+          <li>Project: {{ node.project }}</li>  
+          <li>Language: {{ node.language }}</li>
+          <li>Tags: {{ node.tags }}</li>
+        </ul>
         {%- if node.has_children -%}
           {%- assign children_list = pages_list | where: "parent", node.title -%}
           <ul class="nav-list ">
