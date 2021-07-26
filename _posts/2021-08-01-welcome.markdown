@@ -1,9 +1,0 @@
----
-layout: post
-title:  "Welcome to Jekyll!"
-date:   2021-07-22 16:00:27 +0300
----
-
-Welcome to GoodCode! If you are reading this, it means that we've launched.
-
-Newly published articles will be posted to this feed. Stay up to date by subscribing to our RSS/Atom feed or to our newsletter.
