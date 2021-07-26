@@ -155,15 +155,16 @@ layout: table_wrappers
           </ul>
         {% endif %}
 
-        <!-- TODO: only for articles, posts -->
+        {% if page.id contains "/articles/" or page.id contains "/2021/" %}
         <script src="https://utteranc.es/client.js"
-        repo="ainzzorl/goodcode"
-        issue-term="pathname"
-        label="website comments"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-      </script>
+                repo="ainzzorl/goodcode"
+                issue-term="pathname"
+                label="website comments"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+        {% endif %}
 
         {% capture footer_custom %}
           {%- include footer_custom.html -%}
