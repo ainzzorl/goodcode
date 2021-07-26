@@ -14,13 +14,13 @@
         {%- if include.tag == null or article.tags contains include.tag -%}
         <tr>
             <td>
-                {{ article.title }}
+                <a href="{{ article.id }}">{{ article.title }}</a>
             </td>
             <td>
-                {{ article.project }}
+                <a href="/projects/{{ article.project-key }}">{{ article.project }}</a>
             </td>
             <td>
-                {{ article.language }}
+                <a href="/languages/{{ article.language }}">{{ article.language }}</a>
             </td>
             <td>
                 {{ article.tags | join: " " }}
