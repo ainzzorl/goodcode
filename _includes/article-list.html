@@ -23,7 +23,10 @@
                 <a href="/languages/{{ article.language }}">{{ article.language }}</a>
             </td>
             <td>
-                {{ article.tags | join: " " }}
+                {%- for tag in article.tags -%}
+                <a href="/tags/{{ tag }}">#{{ tag }}</a>
+                {{ " " }}
+                {%- endfor -%}
             </td>
         </tr>
         {%- endif -%}
