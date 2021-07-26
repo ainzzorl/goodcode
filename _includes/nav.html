@@ -66,7 +66,7 @@
         {%- endif -%}
         <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
         <ul class="nav-article-meta">
-          <li>Project: {{ node.project }}</li>  
+          <li><a href="/projects/{{ node.project-key }}.html">{{ node.project }}</a></li>  
           <li>Language: {{ node.language }}</li>
           <li>Tags: {{ node.tags }}</li>
         </ul>

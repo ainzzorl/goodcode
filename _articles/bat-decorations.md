@@ -3,6 +3,7 @@ title:  "Text decoration in Bat"
 layout: default
 language: Rust
 project: Bat
+project-key: bat
 tags: cli,decorator
 ---
 

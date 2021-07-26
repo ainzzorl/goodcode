@@ -3,6 +3,7 @@ title:  "Computing diff between infrastructure templates in AWS CDK"
 layout: default
 language: TypeScript
 project: AWS CDK
+project-key: aws-cdk
 tags: aws,cloud,diff,infrastructure-as-code
 ---
 

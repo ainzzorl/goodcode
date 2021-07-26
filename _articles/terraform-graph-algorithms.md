@@ -3,6 +3,7 @@ title:  "Graph Algorithms in Terraform"
 layout: default
 language: Go
 project: Terraform
+project-key: terraform
 tags: graph,algorithm
 ---
 

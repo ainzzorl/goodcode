@@ -4,6 +4,7 @@ layout: default
 language: Java
 tags: trie,data-structure,algorithm
 project: ZooKeeper
+project-key: zookeeper
 ---
 
 # ZooKeeper - Trie

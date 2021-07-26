@@ -3,6 +3,7 @@ title:  "Testing bug checkers in ErrorProne"
 layout: default
 language: Java
 project: ErrorProne
+project-key: error-prone
 tags: dsl,testing
 ---
 

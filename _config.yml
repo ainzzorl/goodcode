@@ -66,6 +66,10 @@ collections:
     permalink: "/:collection/:path/"
     output: true
 
+  projects:
+    permalink: "/:collection/:path/"
+    output: true
+
 just_the_docs:
   collections:
     articles:
