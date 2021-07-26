@@ -1,5 +1,5 @@
 ---
-title:  "Graph Algorithms in Terraform"
+title:  "Terraform - Graph Algorithms [Go]"
 layout: default
 language: Go
 project: Terraform

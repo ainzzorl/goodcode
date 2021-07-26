@@ -1,5 +1,5 @@
 ---
-title:  "Reporting Download Progress in Httpie"
+title:  "HTTPie - Reporting Download Progress [Python]"
 layout: default
 language: Python
 project: HTTPie

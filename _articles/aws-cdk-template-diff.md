@@ -1,5 +1,5 @@
 ---
-title:  "Computing diff between infrastructure templates in AWS CDK"
+title:  "AWS CDK - Computing diff between infrastructure templates [TypeScript]"
 layout: default
 language: TypeScript
 project: AWS CDK

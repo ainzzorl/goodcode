@@ -1,5 +1,5 @@
 ---
-title:  "Chess board representation in Stockfish"
+title:  "Stockfish - Chess board representation [C++]"
 layout: default
 language: C++
 project: Stockfish

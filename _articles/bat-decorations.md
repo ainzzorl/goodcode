@@ -1,5 +1,5 @@
 ---
-title:  "Text decoration in Bat"
+title:  "Bat - Text decoration [Rust]"
 layout: default
 language: Rust
 project: Bat

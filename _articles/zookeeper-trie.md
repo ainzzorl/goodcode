@@ -1,5 +1,5 @@
 ---
-title:  "ZooKeeper - Trie"
+title:  "ZooKeeper - Trie [Java]"
 layout: default
 language: Java
 tags: trie,data-structure,algorithm

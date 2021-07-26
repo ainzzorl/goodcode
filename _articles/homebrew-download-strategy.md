@@ -1,5 +1,5 @@
 ---
-title:  "Downloading software from a variety of sources in Homebrew"
+title:  "Homebrew - Downloading software from a variety of sources [Ruby]"
 layout: default
 language: Ruby
 project: Homebrew

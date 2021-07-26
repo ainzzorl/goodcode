@@ -1,5 +1,5 @@
 ---
-title:  "AWS CLI's Shorthand Parser"
+title:  "AWS CLI - Shorthand Parser [Python]"
 layout: default
 language: Python
 project: AWS CLI

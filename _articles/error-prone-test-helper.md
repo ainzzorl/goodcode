@@ -1,5 +1,5 @@
 ---
-title:  "Testing bug checkers in ErrorProne"
+title:  "ErrorProne - Testing bug checkers [Java]"
 layout: default
 language: Java
 project: ErrorProne

@@ -1,5 +1,5 @@
 ---
-title:  "Chaos Monkey's MySQL-backed store for schedules and terminations"
+title:  "Chaos Monkey - MySQL-backed store for schedules and terminations [Go]"
 layout: default
 language: Go
 project: Chaos Monkey
