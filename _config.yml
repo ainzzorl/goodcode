@@ -109,3 +109,9 @@ gh_edit_repository: "https://github.com/ainzzorl/goodcode"
 gh_edit_branch: "main"
 # gh_edit_source: docs # the source that your files originate from
 gh_edit_view_mode: "tree"
+
+# Aux links for the upper right navigation
+aux_links:
+  "GoodCode on GitHub":
+    - "//github.com/ainzzorl/goodcode"
+aux_links_new_tab: false
