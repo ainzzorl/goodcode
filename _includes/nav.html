@@ -65,7 +65,7 @@
           <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
         {%- endif -%}
         <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
-        <ul style="margin-left: 10px; list-style-type:none;">
+        <ul class="nav-article-meta">
           <li>Project: {{ node.project }}</li>  
           <li>Language: {{ node.language }}</li>
           <li>Tags: {{ node.tags }}</li>
