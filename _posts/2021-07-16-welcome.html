@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Welcome to GoodCode!"
+date:   2021-07-16 16:00:27 +0300
+---
+
+<article>
+  <h2>
+    <a href="{{ page.url }}">
+      {{ page.title }}
+    </a>
+  </h2>
+  <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_long_string }}</time>
+
+  <p>
+    Welcome to GoodCode! If you are reading this, it means that we've launched.
+  </p>
+
+  <p>
+    Newly published articles will be posted to this feed. Stay up to date by subscribing to our <a href="feed.xml">Atom (RSS-like) feed</a>.  
+  </p>
+</article>
+
+
