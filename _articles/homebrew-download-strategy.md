@@ -4,7 +4,7 @@ layout: default
 language: Ruby
 project: Homebrew
 project-key: homebrew
-tags: strategy, template-method
+tags: [strategy, template-method]
 ---
 
 # Downloading software from a variety of sources in Homebrew

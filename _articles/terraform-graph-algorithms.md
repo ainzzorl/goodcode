@@ -4,7 +4,7 @@ layout: default
 language: Go
 project: Terraform
 project-key: terraform
-tags: graph,algorithm
+tags: [graph, algorithm]
 ---
 
 # Graph Algorithms in Terraform

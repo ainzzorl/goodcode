@@ -72,6 +72,10 @@ collections:
     permalink: "/:collection/:path/"
     output: true
 
+  tags:
+    permalink: "/:collection/:path/"
+    output: true
+
 just_the_docs:
   collections:
     articles:
@@ -86,5 +90,10 @@ just_the_docs:
 
     languages:
       name: By Language
+      nav_exclude: false
+      search_exclude: false
+
+    tags:
+      name: By Tag
       nav_exclude: false
       search_exclude: false

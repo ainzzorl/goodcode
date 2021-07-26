@@ -4,7 +4,7 @@ layout: default
 language: Rust
 project: Bat
 project-key: bat
-tags: cli,decorator
+tags: [cli, decorator]
 ---
 
 # Text decoration in Bat

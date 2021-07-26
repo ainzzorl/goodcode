@@ -4,7 +4,7 @@ layout: default
 language: Java
 project: ErrorProne
 project-key: error-prone
-tags: dsl,testing
+tags: [dsl, testing]
 ---
 
 # Testing bug checkers in ErrorProne

@@ -4,7 +4,7 @@ layout: default
 language: TypeScript
 project: AWS CDK
 project-key: aws-cdk
-tags: aws,cloud,diff,infrastructure-as-code
+tags: [aws, cloud, diff, infrastructure-as-code]
 ---
 
 # Computing diff between infrastructure templates in AWS CDK

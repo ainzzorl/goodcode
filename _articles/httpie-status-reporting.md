@@ -4,7 +4,7 @@ layout: default
 language: Python
 project: HTTPie
 project-key: httpie
-tags: cli,status-reporting,spinner
+tags: [cli, status-reporting, spinner]
 ---
 
 # Reporting Download Progress in Httpie

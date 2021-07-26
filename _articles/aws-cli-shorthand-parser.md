@@ -4,7 +4,7 @@ layout: default
 language: Python
 project: AWS CLI
 project-key: aws-cli
-tags: cli,parsing,visitor
+tags: [cli, parsing, visitor]
 ---
 
 # AWS CLI's Shorthand Parser
