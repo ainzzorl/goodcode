@@ -5,6 +5,7 @@ language: Ruby
 project: Homebrew
 project-key: homebrew
 tags: strategy, template-method
+parent: Articles
 ---
 
 # Downloading software from a variety of sources in Homebrew

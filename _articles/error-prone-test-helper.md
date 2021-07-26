@@ -5,6 +5,7 @@ language: Java
 project: ErrorProne
 project-key: error-prone
 tags: dsl,testing
+parent: Articles
 ---
 
 # Testing bug checkers in ErrorProne

@@ -5,6 +5,7 @@ language: Python
 project: AWS CLI
 project-key: aws-cli
 tags: cli,parsing,visitor
+parent: Articles
 ---
 
 # AWS CLI's Shorthand Parser

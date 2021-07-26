@@ -65,11 +65,6 @@
           <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
         {%- endif -%}
         <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
-        <ul class="nav-article-meta">
-          <li><a href="/projects/{{ node.project-key }}.html">{{ node.project }}</a></li>  
-          <li>Language: {{ node.language }}</li>
-          <li>Tags: {{ node.tags }}</li>
-        </ul>
         {%- if node.has_children -%}
           {%- assign children_list = pages_list | where: "parent", node.title -%}
           <ul class="nav-list ">
@@ -80,6 +75,13 @@
                 <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
               {%- endif -%}
               <a href="{{ child.url | absolute_url }}" class="nav-list-link{% if page.url == child.url %} active{% endif %}">{{ child.title }}</a>
+
+              <ul class="nav-article-meta">
+                <li><a href="/projects/{{ child.project-key }}.html">{{ child.project }}</a></li>  
+                <li>Language: {{ child.language }}</li>
+                <li>Tags: {{ child.tags }}</li>
+              </ul>      
+
               {%- if child.has_children -%}
                 {%- assign grand_children_list = pages_list | where: "parent", child.title | where: "grand_parent", node.title -%}
                 <ul class="nav-list">

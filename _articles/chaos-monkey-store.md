@@ -5,6 +5,7 @@ language: Go
 project: Chaos Monkey
 project-key: chaos-monkey
 tags: data-access,sql,dao
+parent: Articles
 ---
 
 
