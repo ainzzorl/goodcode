@@ -3,4 +3,4 @@ layout: default
 title: Terraform
 ---
 
-{% include project.html name="Terraform" key="terraform" %}
+{% include article-list.html name="Terraform" project-key="terraform" %}

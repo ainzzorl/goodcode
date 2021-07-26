@@ -3,4 +3,4 @@ layout: default
 title: ErrorProne
 ---
 
-{% include project.html name="ErrorProne" key="error-prone" %}
+{% include article-list.html name="ErrorProne" project-key="error-prone" %}

@@ -3,4 +3,4 @@ layout: default
 title: Chaos Monkey
 ---
 
-{% include project.html name="Chaos Monkey" key="chaos-monkey" %}
+{% include article-list.html name="Chaos Monkey" project-key="chaos-monkey" %}

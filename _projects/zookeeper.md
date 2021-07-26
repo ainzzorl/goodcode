@@ -3,4 +3,4 @@ layout: default
 title: ZooKeeper
 ---
 
-{% include project.html name="ZooKeeper" key="zookeeper" %}
+{% include article-list.html name="ZooKeeper" project-key="zookeeper" %}

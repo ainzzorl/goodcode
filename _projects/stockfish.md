@@ -3,4 +3,4 @@ layout: default
 title: Stockfish
 ---
 
-{% include project.html name="Stockfish" key="stockfish" %}
+{% include article-list.html name="Stockfish" project-key="stockfish" %}

@@ -3,4 +3,4 @@ layout: default
 title: Bat
 ---
 
-{% include project.html name="Bat" key="bat" %}
+{% include article-list.html name="Bat" project-key="bat" %}
