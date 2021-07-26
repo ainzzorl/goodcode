@@ -68,6 +68,10 @@ collections:
     permalink: "/:collection/:path/"
     output: true
 
+  languages:
+    permalink: "/:collection/:path/"
+    output: true
+
 just_the_docs:
   collections:
     articles:
@@ -76,6 +80,11 @@ just_the_docs:
       search_exclude: false
 
     projects:
-      name: Projects
+      name: By Project
+      nav_exclude: false
+      search_exclude: false
+
+    languages:
+      name: By Language
       nav_exclude: false
       search_exclude: false

@@ -1,0 +1,31 @@
+{% assign articles = site["articles"] %}
+
+<h1> {{ include.name }} </h1>
+  <table>
+      <tr>
+          <th>Title</th>
+          <th>Project</th>
+          <th>Language</th>
+          <th>Tags</th>
+      </tr>
+      {%- for article in articles -%}
+        {%- if include.project-key == null or article.project-key == include.project-key -%}
+        {%- if include.language == null or article.language == include.language -%}
+        <tr>
+            <td>
+                {{ article.title }}
+            </td>
+            <td>
+                {{ article.project }}
+            </td>
+            <td>
+                {{ article.language }}
+            </td>
+            <td>
+                {{ article.tags }}
+            </td>
+        </tr>
+        {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+</table>
