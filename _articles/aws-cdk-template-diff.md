@@ -1,21 +1,17 @@
 ---
 title:  "AWS CDK - Computing diff between infrastructure templates [TypeScript]"
 layout: default
+
+status: DRAFT
 language: TypeScript
-project: AWS CDK
-project-key: aws-cdk
+project:
+  name: AWS CDK
+  key: aws-cdk
+  home-page: https://github.com/aws/aws-cdk
 tags: [aws, cloud, diff, infrastructure-as-code]
 ---
 
-# Computing diff between infrastructure templates in AWS CDK
-
-* **Status**: DRAFT
-* **Project name**: AWS CDK
-* **Example name**: Computing diff between infrastructure templates
-* **Project home page**: https://github.com/aws/aws-cdk
-* **Programming language(s)**: TypeScript
-* **Frameworks, libraries used:** N/A
-* **Tags:** aws,cloud,diff,infrastructure-as-code
+{% include article-meta.html article=page %}
 
 ## Context
 

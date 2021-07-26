@@ -9,7 +9,7 @@
           <th>Tags</th>
       </tr>
       {%- for article in articles -%}
-        {%- if include.project-key == null or article.project-key == include.project-key -%}
+        {%- if include.project-key == null or article.project.key == include.project-key -%}
         {%- if include.language == null or article.language == include.language -%}
         {%- if include.tag == null or article.tags contains include.tag -%}
         <tr>
@@ -17,15 +17,15 @@
                 <a href="{{ article.id }}">{{ article.title }}</a>
             </td>
             <td>
-                <a href="/projects/{{ article.project-key }}">{{ article.project }}</a>
+                <a href="/projects/{{ article.project.key }}">{{ article.project.name }}</a>
             </td>
             <td>
                 <a href="/languages/{{ article.language }}">{{ article.language }}</a>
             </td>
             <td>
                 {%- for tag in article.tags -%}
-                <a href="/tags/{{ tag }}">#{{ tag }}</a>
-                {{ " " }}
+                    <a href="/tags/{{ tag }}">#{{ tag }}</a>
+                    {{ " " }}
                 {%- endfor -%}
             </td>
         </tr>

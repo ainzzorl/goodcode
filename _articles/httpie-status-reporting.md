@@ -2,20 +2,16 @@
 title:  "HTTPie - Reporting Download Progress [Python]"
 layout: default
 language: Python
-project: HTTPie
-project-key: httpie
+
+status: DRAFT
+project:
+    name: HTTPie
+    key: httpie
+    home-page: https://github.com/httpie/httpie
 tags: [cli, status-reporting, spinner]
 ---
 
-# Reporting Download Progress in Httpie
-
-* **Status**: DRAFT
-* **Project name**: HTTPie
-* **Example name**: HTTPie's Download Progress Reporter
-* **Project home page**: https://github.com/httpie/httpie
-* **Programming language(s)**: Python
-* **Frameworks, libraries used:** N/A
-* **Tags:** cli,status-reporting,spinner
+{% include article-meta.html article=page %}
 
 ## Context
 

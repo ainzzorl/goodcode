@@ -1,21 +1,17 @@
 ---
 title:  "Stockfish - Chess board representation [C++]"
 layout: default
+
+status: DRAFT
 language: C++
-project: Stockfish
-project-key: stockfish
+project:
+    name: Stockfish
+    key: stockfish
+    home-page: https://github.com/official-stockfish/Stockfish
 tags: [chess, bitboard]
 ---
 
-# Chess board representation in Stockfish
-
-* **Status**: DRAFT
-* **Project name**: Stockfish
-* **Example name**: Chess board representation in Stockfish
-* **Project home page**: https://github.com/official-stockfish/Stockfish
-* **Programming language(s)**: C++
-* **Frameworks, libraries used:** N/A
-* **Tags:** chess,bitboard
+{% include article-meta.html article=page %}
 
 ## Context
 

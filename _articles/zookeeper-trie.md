@@ -2,20 +2,16 @@
 title:  "ZooKeeper - Trie [Java]"
 layout: default
 language: Java
+
+status: DRAFT
+project:
+    name: Apache ZooKeeper
+    key: zookeeper
+    home-page: https://github.com/apache/zookeeper
 tags: [trie, data-structure, algorithm]
-project: ZooKeeper
-project-key: zookeeper
 ---
 
-# ZooKeeper - Trie
-
-* **Status**: DRAFT
-* **Project name**: Apache Zookeeper
-* **Example name**: Trie data structure implementation in ZooKeeper
-* **Project home page**: https://github.com/apache/zookeeper
-* **Programming language(s)**: Java
-* **Frameworks, libraries used:** N/A
-* **Tags:** trie,data-structure,algorithm
+{% include article-meta.html article=page %}
 
 ## Context
 
