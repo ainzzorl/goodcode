@@ -6,4 +6,4 @@ date:   2021-07-16 16:00:27 +0300
 
 Welcome to GoodCode! If you are reading this, it means that we've launched.
 
-Newly published articles will be posted to this feed. Stay up to date by subscribing to our [Atom (RSS-like) feed](feed.xml) feed or to our newsletter.
+Newly published articles will be posted to this feed. Stay up to date by subscribing to our [Atom (RSS-like) feed](feed.xml).
