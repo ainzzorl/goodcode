@@ -5,7 +5,6 @@ language: Java
 tags: trie,data-structure,algorithm
 project: ZooKeeper
 project-key: zookeeper
-parent: Articles
 ---
 
 # ZooKeeper - Trie

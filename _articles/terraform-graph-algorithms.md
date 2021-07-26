@@ -5,7 +5,6 @@ language: Go
 project: Terraform
 project-key: terraform
 tags: graph,algorithm
-parent: Articles
 ---
 
 # Graph Algorithms in Terraform

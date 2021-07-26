@@ -5,7 +5,6 @@ language: C++
 project: Stockfish
 project-key: stockfish
 tags: chess,bitboard
-parent: Articles
 ---
 
 # Chess board representation in Stockfish

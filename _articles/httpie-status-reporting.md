@@ -5,7 +5,6 @@ language: Python
 project: HTTPie
 project-key: httpie
 tags: cli,status-reporting,spinner
-parent: Articles
 ---
 
 # Reporting Download Progress in Httpie

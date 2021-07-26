@@ -59,9 +59,7 @@ exclude:
 #theme: "just-the-docs"
 remote_theme: pmarsceill/just-the-docs
 
-# Define Jekyll collections
 collections:
-  # Define a collection named "docs", its documents reside in the "_docs" directory
   articles:
     permalink: "/:collection/:path/"
     output: true
@@ -74,5 +72,10 @@ just_the_docs:
   collections:
     articles:
       name: Articles
+      nav_exclude: false
+      search_exclude: false
+
+    projects:
+      name: Projects
       nav_exclude: false
       search_exclude: false

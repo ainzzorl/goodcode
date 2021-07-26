@@ -5,7 +5,6 @@ language: Rust
 project: Bat
 project-key: bat
 tags: cli,decorator
-parent: Articles
 ---
 
 # Text decoration in Bat
