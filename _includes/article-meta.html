@@ -11,12 +11,12 @@
     <dd> <a href="{{ include.article.project.home-page }}">{{ include.article.project.home-page }}</a> </dd>
 
     <dt>Language</dt>
-    <dd> <a href="/languages/{{ include.article.language }}">{{ include.article.language }}</a> </dd>
+    <dd> <a href="{{ site.baseurl }}/languages/{{ include.article.language }}">{{ include.article.language }}</a> </dd>
 
     <dt>Tags</dt>
     <dd>
         {%- for tag in include.article.tags -%}
-        <a href="/tags/{{ tag }}">#{{ tag }}</a>
+        <a href="{{ site.baseurl }}/tags/{{ tag }}">#{{ tag }}</a>
         {{ " " }}
         {%- endfor -%}
     </dd>

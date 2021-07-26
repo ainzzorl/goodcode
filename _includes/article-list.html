@@ -17,14 +17,14 @@
                 <a href="{{ article.id }}">{{ article.title }}</a>
             </td>
             <td>
-                <a href="/projects/{{ article.project.key }}">{{ article.project.name }}</a>
+                <a href="{{ site.baseurl }}/projects/{{ article.project.key }}">{{ article.project.name }}</a>
             </td>
             <td>
-                <a href="/languages/{{ article.language }}">{{ article.language }}</a>
+                <a href="{{ site.baseurl }}/languages/{{ article.language }}">{{ article.language }}</a>
             </td>
             <td>
                 {%- for tag in article.tags -%}
-                    <a href="/tags/{{ tag }}">#{{ tag }}</a>
+                    <a href="{{ site.baseurl }} /tags/{{ tag }}">#{{ tag }}</a>
                     {{ " " }}
                 {%- endfor -%}
             </td>
