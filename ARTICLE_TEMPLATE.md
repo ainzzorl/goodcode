@@ -1,12 +1,17 @@
-# TITLE
+---
+title:  "PROJECT-NAME - EXAMPLE-NAME [LANGUAGE]"
+layout: default
+language: e.g. Java
 
-* **Status**: *DRAFT|PUBLISHED|OBSOLETE*
-* **Project name**: *e.g. Project Foo*
-* **Example name**: *e.g. Project Foo's implementation of bar algorithm.*
-* **Project home page**: *e.g. https://github.com/foo/bar*
-* **Programming language(s)**: *e.g. TypeScript. Only mention language(s) used in that particular system/class/module/etc. we consider featuring.*
-* **Frameworks, libraries used:** *e.g. React.*
-* **Tags:** *whatever tags you find relevant, for instance the theme of the article, used design patterns, etc. E.g. visitor,dsl,machine-learning,mysql*
+status: DRAFT
+project:
+    name: e.g. Project Foo
+    key: e.g. foo. It must be unique across all projects in the catalog.
+    home-page: https://github.com/foo/bar
+tags: ['whatever', 'tags', 'you', 'find', 'relevant']
+---
+
+{% include article-meta.html article=page %}
 
 ## Context
 
@@ -30,11 +35,11 @@
 
 ## Observations
 
-*Add more observations about the code.*
+*Add more observations about the code. Optional. Consider writing observations in relevant sections of "Implementation details".*
 
 ## Related
 
-*Discuss similar and/or related implementations.*
+*Discuss similar and/or related implementations. Optional.*
 
 ## References
 
