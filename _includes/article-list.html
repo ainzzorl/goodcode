@@ -14,7 +14,7 @@
         {%- if include.tag == null or article.tags contains include.tag -%}
         <tr>
             <td>
-                <a href="{{ site.baseurl }}/{{ article.id }}">{{ article.title }}</a>
+                <a href="{{ site.baseurl }}{{ article.id }}">{{ article.title }}</a>
             </td>
             <td>
                 <a href="{{ site.baseurl }}/projects/{{ article.project.key }}">{{ article.project.name }}</a>
