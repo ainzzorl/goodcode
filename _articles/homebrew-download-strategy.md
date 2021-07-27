@@ -1,9 +1,9 @@
 ---
 title:  "Homebrew - Downloading software from a variety of sources [Ruby]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-27T16:09:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Ruby
 project:
   name: Homebrew
@@ -16,7 +16,7 @@ tags: [strategy, template-method]
 
 ## Context
 
-Homebrew is "The Missing Package Manager for macOS (or Linux)". It offers command line interface with commands like `brew install <example>`.
+Homebrew is "The Missing Package Manager for macOS (or Linux)". It offers a command line interface with commands like `brew install <package>`.
 
 Available packages are described with Ruby **fomulae** that include download URLs and source code repositories, e.g.
 
@@ -32,23 +32,25 @@ Formulae can also include URLs of resources the package depends on.
 
 ## Problem
 
-Homebrew needs to download and unpack the resource from the specified location, but how to do it depends on the exact URL. For instance, downloading a tarball is not the same as downloading repository content from Github. Some resources need to be unpacked, some don't.
+Homebrew needs to download and unpack the resource from the specified location, but how to do it depends on the exact URL. For instance, downloading a tarball is not the same as downloading repository content from GitHub. Some resources need to be unpacked, some don't.
 
 Homebrew is expected to figure out how to download the resource automatically, formulae authors should be allowed to explicitly specify the right way to download and unpack the resource.
 
 ## Overview
 
-Homebrew employs the [***Strategy***](https://en.wikipedia.org/wiki/Strategy_pattern) pattern to describe various ways to download a resource. Various strategies, such as `GitHubGitDownloadStrategy`, `GitDownloadStrategy`, `SubversionDownloadStrategy`, `CurlDownloadStrategy` or `LocalBottleDownloadStrategy` implement `fetch(timeout)` and some other methods. Since it's written in Ruby, the interface is defined implicitly.
+Homebrew employs the [***Strategy***](https://en.wikipedia.org/wiki/Strategy_pattern) pattern to describe various ways to download a resource. Various strategies, such as [`GitHubGitDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L983-L1040), [`GitDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L776-L981), [`SubversionDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L658-L774), [`CurlDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L362-L556) or [`LocalBottleDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L648-L774) implement `fetch(timeout)` and a few other methods.
 
-Strategies inherit `AbstractDownloadStrategy` that provides common functionality, e.g. unpacking the download, caching, turning logging on and off.
+Strategies inherit from [`AbstractDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L21-L177) which provides common functionality, e.g. unpacking the download, caching, turning logging on and off.
 
 The exact strategy is picked based on the URL, with a way to choose a strategy explicitly.
 
-Similar approach is applied to unpacking resourced with *UnpackStrategy*. The details are out of the scope of this article.
+A similar approach is applied to unpacking resourced with [`UnpackStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/unpack_strategy.rb). The details are out of the scope of this article.
 
 There are numerous intricacies around the usage of cookies, user agents, HTTP redirects, git submodules and so on.
 
-[Choosing the download strategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L1306-L1372):
+## Implementation details
+
+[Choosing the download strategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L1306-L1372). It's inferred from the URL unless it's overriden with `using`.
 
 ```ruby
 # Helper class for detecting a download strategy from a URL.
@@ -174,9 +176,9 @@ class AbstractDownloadStrategy
    # ...
 ```
 
-[CurlDownloadStrategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L365) ultimilaty calls `curl`.
+[`CurlDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L362-L556), as its name suggests, ultimilaty calls `curl` with the right set of arguments.
 
-Strategies for various version control systems (Git, Mercurial, Subversion, etc.) inherit from `VCSDownloadStrategy`. It follows the [***Template Method***](https://en.wikipedia.org/wiki/Template_method_pattern) pattern: `fetch` is implemented in `VCSDownloadStrategy`, but it relies on child strategies to implement methods such as `clone_repo`.
+Strategies for various version control systems (Git, Mercurial, Subversion, etc.) inherit from [`VCSDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L179-L267). It follows the [***Template Method***](https://en.wikipedia.org/wiki/Template_method_pattern) pattern: `fetch` is implemented in [`VCSDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L179-L267), but it relies on child strategies to implement methods such as `clone_repo`.
 
 ```ruby
 # @abstract Abstract superclass for all download strategies downloading from a version control system.
@@ -270,9 +272,7 @@ class VCSDownloadStrategy < AbstractDownloadStrategy
 end
 ```
 
-[GitDownloadStrategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L779-L981)
-
-`clone_repo` is called by `GitDownloadStrategy#fetch`.
+[`GitDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L779-L981). `clone_repo` is [called by `GitDownloadStrategy#fetch`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L206-L208).
 
 ```ruby
 # Strategy for downloading a Git repository.
@@ -408,7 +408,7 @@ describe DownloadStrategyDetector do
 end
 ```
 
-[Testing CurlDownloadStrategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/test/download_strategies/curl_spec.rb) boils down to checking that `curl` is called with correct parameters.
+[Testing CurlDownloadStrategy](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/test/download_strategies/curl_spec.rb) boils down to checking that `curl` is called with the correct arguments.
 
 ```ruby
 describe CurlDownloadStrategy do
@@ -447,20 +447,21 @@ describe CurlDownloadStrategy do
 end
 ```
 
-[Tests for the rest of DownloadStrategies](https://github.com/Homebrew/brew/tree/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/test/download_strategies)
+[Tests for the rest of DownloadStrategies](https://github.com/Homebrew/brew/tree/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/test/download_strategies).
 
 ## Observations
 
 - We see a use of the strategy pattern to select a downloading algorithm at runtime. `DownloadStrategy` effectively hides the underlying complexity behind a simple interface.
 - Using the template method pattern streamlines strategies for different version control systems.
-- It's a little surpsising that all strategies are implemented in the same file. Interestingly, test files for different strategies are different.
+- It's a little surpsising that all strategies are located in the same file. Interestingly, test files for different strategies are different.
 - The name of the default Git branch is [hard-coded to "master"](https://github.com/Homebrew/brew/blob/625d9db5f413c0174267442cb175ec0b8b5b4892/Library/Homebrew/download_strategy.rb#L783). Since that, git has changed it to "main".
-- *Unit* test coverage differs per strategy. [CurlDownloadStrategy spec](https://github.com/Homebrew/brew/blob/04532cb6216b69a5b067aa7a4e22cff0944b257d/Library/Homebrew/test/download_strategies/curl_spec.rb) appears rather comprehensive, specs for git-based strategies - not so much. Perhaps there are integration tests verifying the behavior.
-- In [DowloadStrategyDetector spec](https://github.com/Homebrew/brew/blob/04532cb6216b69a5b067aa7a4e22cff0944b257d/Library/Homebrew/test/download_strategies/detector_spec.rb), they did not bother to test some of the seemingly trivial scenarios like explicitly choosing a strategy, or exercising all URL patterns.
-- To interact with git, they actually call the git command, rather than using a library like [ruby-git](https://github.com/ruby-git/ruby-git).
+- *Unit* test coverage differs per strategy. [`CurlDownloadStrategy` spec](https://github.com/Homebrew/brew/blob/04532cb6216b69a5b067aa7a4e22cff0944b257d/Library/Homebrew/test/download_strategies/curl_spec.rb), for instance, appears rather comprehensive, while specs for git-based strategies - not so much.
+- [`DowloadStrategyDetector` spec](https://github.com/Homebrew/brew/blob/04532cb6216b69a5b067aa7a4e22cff0944b257d/Library/Homebrew/test/download_strategies/detector_spec.rb) doesn't bother to test some of the seemingly trivial scenarios like explicitly choosing a strategy, or exercising all URL patterns.
+- To interact with git, it actually [calls the git command](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L872-L946) installed on the user machine directly, rather than use a library like [ruby-git](https://github.com/ruby-git/ruby-git).
+- If you are new to Ruby, [`if using.is_a?(Class) && using < AbstractDownloadStrategy`](https://github.com/Homebrew/brew/blob/09f7bc27a99469cf947431df4754737dfbadb31d/Library/Homebrew/download_strategy.rb#L1313) must look very strange. It means that `using` is a class and is a subclass of `AbstractDownloadStrategy`.
 
 ## References
 
-* [Github Repo](https://github.com/Homebrew/brew)
+* [GitHub Repo](https://github.com/Homebrew/brew)
 * [Documentation](https://docs.brew.sh)
 * [Homebrew Terminology](https://docs.brew.sh/Formula-Cookbook#homebrew-terminology)
