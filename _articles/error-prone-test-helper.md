@@ -1,15 +1,15 @@
 ---
-title:  "ErrorProne - Testing bug checkers [Java]"
+title:  "Error Prone - Testing bug checkers [Java]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-27T18:22:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Java
 project:
-  name: ErrorProne
+  name: Error Prone
   key: error-prone
   home-page: https://github.com/google/error-prone
-tags: [dsl, testing]
+tags: [dsl, test-helper, builder]
 ---
 
 {% include article-meta.html article=page %}
@@ -18,19 +18,19 @@ tags: [dsl, testing]
 
 Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.
 
-It's comprised of hundreds of different checkers searching for different types of defects. Checkers inherit the same base class [`BugChecker`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/check_api/src/main/java/com/google/errorprone/bugpatterns/BugChecker.java#L399). In the nutshell, the interface for a checker is *unit of code (class, method, etc.) in - findings out*.
+It's comprised of hundreds of different checkers searching for different types of defects. Checkers inherit the same base class [`BugChecker`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/check_api/src/main/java/com/google/errorprone/bugpatterns/BugChecker.java#). In the nutshell, the interface for a checker is *unit of code (class, method, etc.) in - findings out*.
 
 ## Problem
 
-There must be an easy and uniform way to test checkers. Tests must be easy to read and easy to write. They must abstract away how source code is represented and how these representaions (abstract syntax trees, etc.) are built, how the checker interacts with the rest of the system, etc.
+There must be an easy and uniform way to test checkers. Tests must be easy to read and easy to write. They must be agnostic to how source code is represented and how these representations (abstract syntax trees, etc.) are built, how the checker interacts with the rest of the system, etc.
 
 ## Overview
 
-Error Prone implements a helper class, [CompilationTestHelper](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java), to simplicy writing these tests.
+Error Prone implements a helper class, [`CompilationTestHelper`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java), to simplicy writing bug checkers.
 
 It is initialized with the checker under test and accepts source code to run the checker on. That code can either be inlined in the test, or read from another file.
 
-The test author annotates the input code with comments marking where the checker must fire and what it must say.
+The test author annotates the input code with comments marking where the checker must fire and what it must output.
 
 `CompilationTestHelper` then runs the checker on the provided code and compares its output with the expectation extracted from the marker comments.
 
@@ -129,7 +129,64 @@ public class ComparableTypeTest {
   }
 ```
 
-Main [`doTest method`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java#L293-L346) that compiles the supplied code and compares the output to the expectations:
+Main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java#L293-L346) that compiles the supplied code and compares the output to the expectations:
+```java
+  /** Performs a compilation and checks that the diagnostics and result match the expectations. */
+  public void doTest() {
+    checkState(!sources.isEmpty(), "No source files to compile");
+    checkState(!run, "doTest should only be called once");
+    this.run = true;
+    Result result = compile();
+    for (Diagnostic<? extends JavaFileObject> diagnostic : diagnosticHelper.getDiagnostics()) {
+      if (diagnostic.getCode().contains("error.prone.crash")) {
+        fail(diagnostic.getMessage(Locale.ENGLISH));
+      }
+    }
+    if (expectNoDiagnostics) {
+      List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticHelper.getDiagnostics();
+      assertWithMessage(
+              String.format(
+                  "Expected no diagnostics produced, but found %d: %s",
+                  diagnostics.size(), diagnostics))
+          .that(diagnostics.size())
+          .isEqualTo(0);
+      assertWithMessage(
+              String.format(
+                  "Expected compilation result to be "
+                      + expectedResult.orElse(Result.OK)
+                      + ", but was %s. No diagnostics were emitted."
+                      + " OutputStream from Compiler follows.\n\n%s",
+                  result,
+                  outputStream))
+          .that(result)
+          .isEqualTo(expectedResult.orElse(Result.OK));
+    } else {
+      for (JavaFileObject source : sources) {
+        try {
+          diagnosticHelper.assertHasDiagnosticOnAllMatchingLines(
+              source, lookForCheckNameInDiagnostic);
+        } catch (IOException e) {
+          throw new UncheckedIOException(e);
+        }
+      }
+      assertWithMessage("Unused error keys: " + diagnosticHelper.getUnusedLookupKeys())
+          .that(diagnosticHelper.getUnusedLookupKeys().isEmpty())
+          .isTrue();
+    }
+
+    expectedResult.ifPresent(
+        expected ->
+            assertWithMessage(
+                    String.format(
+                        "Expected compilation result %s, but was %s\n%s\n%s",
+                        expected,
+                        result,
+                        Joiner.on('\n').join(diagnosticHelper.getDiagnostics()),
+                        outputStream))
+                .that(result)
+                .isEqualTo(expected));
+  }
+```
 
 [Extracting markers from code and comparing them to the actual results](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/DiagnosticTestHelper.java#L275-L353):
 
@@ -218,16 +275,16 @@ Main [`doTest method`](https://github.com/google/error-prone/blob/c601758e81723a
 
 ## Observations
 
-- Unit tests usually interact with the code-under-test's public interface, but here the test interacts with the code under test in a very indirect way - it only supplies it to the helper class, which also sends it through more levels of indirection.
+- Unit tests usually interact with the public interface of the code under test, but here the test interacts with the code under test in a very indirect way - it only supplies it to the helper class, which also sends it through more levels of indirection.
 - The interface of the test helper is very instructive and reusable; its implementation - not so much.
 
-# Related
+## Related
 
 Many related products - linters, bug checkers, etc. - implement very similar patterns.
 
-E.g. SonarQube's [CheckVerifier](https://github.com/SonarSource/sonar-java/blob/434f170b9667df33eb7355c0e7e62147c48a7da8/java-checks-testkit/src/main/java/org/sonar/java/checks/verifier/CheckVerifier.java#L70), Rubocop's [ExpectOffence](https://github.com/rubocop/rubocop/blob/dc858b7ba893ffeae5edfe7b8012d8f13afd6903/lib/rubocop/rspec/expect_offense.rb).
+E.g. SonarQube's [CheckVerifier](https://github.com/SonarSource/sonar-java/blob/434f170b9667df33eb7355c0e7e62147c48a7da8/java-checks-testkit/src/main/java/org/sonar/java/checks/verifier/CheckVerifier.java#), Rubocop's [ExpectOffence](https://github.com/rubocop/rubocop/blob/dc858b7ba893ffeae5edfe7b8012d8f13afd6903/lib/rubocop/rspec/expect_offense.rb).
 
 ## References
 
-* [Github Repo](https://github.com/google/error-prone)
+* [GitHub Repo](https://github.com/google/error-prone)
 * [Writing a check](https://github.com/google/error-prone/wiki/Writing-a-check)
