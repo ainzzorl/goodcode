@@ -1,9 +1,9 @@
 ---
 title:  "Terraform - Graph Algorithms [Go]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-27T20:27:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Go
 project:
     name: Terraform
@@ -16,11 +16,11 @@ tags: [graph, algorithm]
 
 ## Context
 
-Terraform is an open-source [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) software tool created by HashiCorp. Terraform users define their infrastructure using declarative configuration files and apply changes to to hundreds of cloud providers.
+Terraform is an open-source [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) software tool created by HashiCorp. Terraform users define their infrastructure using declarative configuration files and apply changes to hundreds of cloud providers.
 
 ## Problem
 
-Infrastructure resources and their dependencies form a graph. Terraform needs to implement various graph algorithms to process them. For instance, it needs to validate that there are no circular dependencies between resources, i.e. the graph is a DAG (Directed Acyclic Graph).
+Infrastructure resources and their dependencies form a graph. Terraform needs to implement various graph algorithms to process them. For instance, it needs to validate that there are no circular dependencies between resources, i.e. that the graph is a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Directed Acyclic Graph).
 
 ## Overview
 
@@ -32,7 +32,7 @@ Terrafrom implements a number of graph algorithms:
 
 ## Implementation details
 
-[Graph structure](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L9-L15):
+[Graph structure](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L9-L15). A graph is represented as a set of edges, a set of vertices, a map of outgoing edges (`downEdges`) and a map of incoming edges (`upEdges`).
 ```go
 // Graph is used to represent a dependency graph.
 type Graph struct {
@@ -83,7 +83,7 @@ func (g *Graph) Connect(edge Edge) {
 }
 ```
 
-[Finding root node in a DAG](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L61-L82):
+[Finding the root node in a DAG](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L61-L82):
 ```go
 // Root returns the root of the DAG, or an error.
 //
@@ -187,13 +187,97 @@ func (g *AcyclicGraph) DepthFirstWalk(start Set, f DepthWalkFunc) error {
 }
 ```
 
-[Tarjan's algorithm](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/tarjan.go).
+[Tarjan's algorithm](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/tarjan.go) (some stack operations are omitted):
+
+```go
+// StronglyConnected returns the list of strongly connected components
+// within the Graph g. This information is primarily used by this package
+// for cycle detection, but strongly connected components have widespread
+// use.
+func StronglyConnected(g *Graph) [][]Vertex {
+	vs := g.Vertices()
+	acct := sccAcct{
+		NextIndex:   1,
+		VertexIndex: make(map[Vertex]int, len(vs)),
+	}
+	for _, v := range vs {
+		// Recurse on any non-visited nodes
+		if acct.VertexIndex[v] == 0 {
+			stronglyConnected(&acct, g, v)
+		}
+	}
+	return acct.SCC
+}
+
+func stronglyConnected(acct *sccAcct, g *Graph, v Vertex) int {
+	// Initial vertex visit
+	index := acct.visit(v)
+	minIdx := index
+
+	for _, raw := range g.downEdgesNoCopy(v) {
+		target := raw.(Vertex)
+		targetIdx := acct.VertexIndex[target]
+
+		// Recurse on successor if not yet visited
+		if targetIdx == 0 {
+			minIdx = min(minIdx, stronglyConnected(acct, g, target))
+		} else if acct.inStack(target) {
+			// Check if the vertex is in the stack
+			minIdx = min(minIdx, targetIdx)
+		}
+	}
+
+	// Pop the strongly connected components off the stack if
+	// this is a root vertex
+	if index == minIdx {
+		var scc []Vertex
+		for {
+			v2 := acct.pop()
+			scc = append(scc, v2)
+			if v2 == v {
+				break
+			}
+		}
+
+		acct.SCC = append(acct.SCC, scc)
+	}
+
+	return minIdx
+}
+
+func min(a, b int) int {
+	if a <= b {
+		return a
+	}
+	return b
+}
+
+// sccAcct is used ot pass around accounting information for
+// the StronglyConnectedComponents algorithm
+type sccAcct struct {
+	NextIndex   int
+	VertexIndex map[Vertex]int
+	Stack       []Vertex
+	SCC         [][]Vertex
+}
+
+// visit assigns an index and pushes a vertex onto the stack
+func (s *sccAcct) visit(v Vertex) int {
+	idx := s.NextIndex
+	s.VertexIndex[v] = idx
+	s.NextIndex++
+	s.push(v)
+	return idx
+}
+
+// ...
+```
 
 ## Testing
 
-Testing is rather straightforward.
+The test coverage is quite comprehensive.
 
-[Finding root](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag_test.go#L23-L36):
+[Finding the root node](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag_test.go#L23-L36):
 ```go
 func TestAcyclicGraphRoot(t *testing.T) {
 	var g AcyclicGraph
@@ -225,12 +309,12 @@ See more tests in [dag_test.go](https://github.com/hashicorp/terraform/blob/72a7
 
 ## Observations
 
-* Methods like [`UpEdges`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L171)) return copies. To avoid copying when it's unnecessary, there are methods like [`upEdgesNoCopy`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L191).
-* There are two almost identical methods to walk a graph: "down", [`DepthFirstWalk`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L184) and "up", [ReverseDepthFirstWalk](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L266). There's no common method to share code between them.
-* There's a custom [`Set`](https://github.com/hashicorp/terraform/blob/main/internal/dag/set.go) class on top of golang's maps.
+* Methods like [`Graph#UpEdges`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L171) return copies. To avoid copying when it's unnecessary, there are methods like [`Graph#upEdgesNoCopy`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph.go#L191).
+* There are two almost identical methods to walk a graph: "down", [`DepthFirstWalk`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L184), and "up", [`ReverseDepthFirstWalk`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag.go#L266). There's no common method to share code between them.
+* There's a custom [`Set`](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/set.go) class on top of golang's maps to store vertices and edges.
 
 ## References
 
-* [Github Repo](https://github.com/hashicorp/terraform)
+* [GitHub Repo](https://github.com/hashicorp/terraform)
 * [Product website](https://www.terraform.io/)
 * [Documentation](https://www.terraform.io/docs/)
