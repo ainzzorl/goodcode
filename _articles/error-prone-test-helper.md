@@ -1,13 +1,17 @@
-# Testing bug checkers in ErrorProne
+---
+title:  "ErrorProne - Testing bug checkers [Java]"
+layout: default
 
-* **Status**: DRAFT
-* **Project name**: ErrorProne
-* **Example name**: Test helper for testing bug checkers
-* **Project home page**: https://github.com/google/error-prone
-* **Programming language(s)**: Java
-* **Frameworks, libraries used:** JUnit, [Truth](https://github.com/google/truth)
-* **Tags:** dsl,testing
+status: DRAFT
+language: Java
+project:
+  name: ErrorProne
+  key: error-prone
+  home-page: https://github.com/google/error-prone
+tags: [dsl, testing]
+---
 
+{% include article-meta.html article=page %}
 
 ## Context
 

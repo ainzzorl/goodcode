@@ -1,13 +1,17 @@
+---
+title:  "Bat - Text decoration [Rust]"
+layout: default
 
-# Text decoration in Bat
+status: DRAFT
+language: Rust
+project:
+  name: Bat
+  key: bat
+  home-page: https://github.com/sharkdp/bat
+tags: [cli, decorator]
+---
 
-* **Status**: DRAFT
-* **Project name**: Bat
-* **Example name**: Bat's text decoration
-* **Project home page**: https://github.com/sharkdp/bat
-* **Programming language(s)**: Rust
-* **Frameworks, libraries used:** N/A
-* **Tags:** cli,decorator
+{% include article-meta.html article=page %}
 
 ## Context
 

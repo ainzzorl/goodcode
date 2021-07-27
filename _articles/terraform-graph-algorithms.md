@@ -1,12 +1,17 @@
-# Graph Algorithms in Terraform
+---
+title:  "Terraform - Graph Algorithms [Go]"
+layout: default
 
-* **Status**: DRAFT
-* **Project name**: Terraform
-* **Example name**: Graph Algorithms in Terraform
-* **Project home page**: https://github.com/hashicorp/terraform
-* **Programming language(s)**: Go
-* **Frameworks, libraries used:** N/A
-* **Tags:** graph,algorithm
+status: DRAFT
+language: Go
+project:
+    name: Terraform
+    key: terraform
+    home-page: https://github.com/hashicorp/terraform
+tags: [graph, algorithm]
+---
+
+{% include article-meta.html article=page %}
 
 ## Context
 

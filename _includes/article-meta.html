@@ -1,0 +1,32 @@
+<h1> {{ include.article.title }} </h1>
+
+<dl>
+    <dt>Status</dt>
+    <dd> {{ include.article.status }} </dd>
+
+    <dt>Project</dt>
+    <dd> <a href="/projects/{{ include.article.project.key }}">{{ include.article.project.name }}</a> </dd>
+
+    <dt>Project home page</dt>
+    <dd> <a href="{{ include.article.project.home-page }}">{{ include.article.project.home-page }}</a> </dd>
+
+    <dt>Language</dt>
+    <dd> <a href="{{ site.baseurl }}/languages/{{ include.article.language }}">{{ include.article.language }}</a> </dd>
+
+    <dt>Tags</dt>
+    <dd>
+        {%- for tag in include.article.tags -%}
+        <a href="{{ site.baseurl }}/tags/{{ tag }}">#{{ tag }}</a>
+        {{ " " }}
+        {%- endfor -%}
+    </dd>
+</dl>
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+  1. TOC
+  {:toc}
+</details>

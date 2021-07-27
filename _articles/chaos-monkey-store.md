@@ -1,13 +1,17 @@
+---
+title:  "Chaos Monkey - MySQL-backed store for schedules and terminations [Go]"
+layout: default
 
-# Chaos Monkey's MySQL-backed store for schedules and terminations
+status: DRAFT
+language: Go
+project:
+  name: Chaos Monkey
+  key: chaos-monkey
+  home-page: https://github.com/Netflix/chaosmonkey
+tags: [data-access, sql, dao]
+---
 
-* **Status**: DRAFT
-* **Project name**: Chaos Monkey
-* **Example name**: MySQL-backed store for schedules and terminations
-* **Project home page**: https://github.com/Netflix/chaosmonkey
-* **Programming language(s)**: Go
-* **Frameworks, libraries used:** MySQL
-* **Tags:** data-access,sql,dao
+{% include article-meta.html article=page %}
 
 ## Context
 

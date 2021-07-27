@@ -1,13 +1,17 @@
+---
+title:  "Homebrew - Downloading software from a variety of sources [Ruby]"
+layout: default
 
-# Downloading software from a variety of sources in Homebrew
+status: DRAFT
+language: Ruby
+project:
+  name: Homebrew
+  key: homebrew
+  home-page: https://github.com/Homebrew/brew
+tags: [strategy, template-method]
+---
 
-* **Status**: DRAFT
-* **Project name**: Homebrew
-* **Example name**: Downloading software from a variety of sources in Homebrew
-* **Project home page**: https://github.com/Homebrew/brew
-* **Programming language(s)**: Ruby
-* **Frameworks, libraries used:** Sorbet, rspec
-* **Tags:** strategy, template-method
+{% include article-meta.html article=page %}
 
 ## Context
 

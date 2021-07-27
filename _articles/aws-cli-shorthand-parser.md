@@ -1,12 +1,17 @@
-# AWS CLI's Shorthand Parser
+---
+title:  "AWS CLI - Shorthand Parser [Python]"
+layout: default
 
-* **Status**: DRAFT
-* **Project name**: AWS CLI
-* **Example name**: Shorthand Parser
-* **Project home page**: https://github.com/aws/aws-cli/
-* **Programming language(s)**: Python
-* **Frameworks, libraries used:** N/A
-* **Tags:** cli,parsing,visitor
+status: DRAFT
+language: Python
+project:
+  name: AWS CLI
+  key: aws-cli
+  home-page: https://github.com/aws/aws-cli/
+tags: [cli, parsing, visitor]
+---
+
+{% include article-meta.html article=page %}
 
 ## Context
 
