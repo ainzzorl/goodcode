@@ -23,6 +23,8 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 
+title: Code Catalog
+
 collections:
   articles:
     permalink: "/:collection/:path/"
@@ -75,6 +77,6 @@ gh_edit_view_mode: "tree"
 
 # Aux links for the upper right navigation
 aux_links:
-  "GoodCode on GitHub":
+  "Code Catalog on GitHub":
     - "//github.com/ainzzorl/goodcode"
 aux_links_new_tab: false
