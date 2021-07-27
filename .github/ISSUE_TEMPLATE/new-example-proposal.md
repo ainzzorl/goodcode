@@ -13,11 +13,10 @@ assignees: ''
 * **Example name**: *e.g. Project Foo's implementation of bar algorithm.*
 * **Project home page**: *e.g. https://github.com/foo/bar*
 * **Programming language(s)**: *e.g. TypeScript. Only mention language(s) used in that particular system/class/module/etc. we consider featuring.*
-* **Frameworks, libraries used:** *e.g. React.*
 
 ## Description
 
-*Describe what the proposed example does and how (in very general terms) it does it. Assume that the reader is not familiar with the project at all.*
+*Describe what the proposed example does and how it does it. Assume that the reader is not familiar with the project at all.*
 
 ## Links
 
