@@ -1,15 +1,15 @@
 ---
 title:  "Chaos Monkey - MySQL-backed store for schedules and terminations [Go]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T09:00:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Go
 project:
   name: Chaos Monkey
   key: chaos-monkey
   home-page: https://github.com/Netflix/chaosmonkey
-tags: [data-access, sql, dao]
+tags: [data-access, sql, dao, chaos-engineering]
 ---
 
 {% include article-meta.html article=page %}
@@ -24,7 +24,7 @@ Chaos Monkey stores performed instance terminations and termination schedules in
 
 ## Overview
 
-The persistence logic is encapsulated within [MySQL struct](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42) and its methods. This is a variation of the [Data Access Object (DAO)](https://www.oracle.com/java/technologies/dataaccessobject.html) pattern.
+The persistence logic resides in [`MySQL` struct](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42) and its methods. This is a variation of the [Data Access Object (DAO)](https://www.oracle.com/java/technologies/dataaccessobject.html) pattern. It provides a convenient interface to the application and hides the details of the persistence logic.
 
 Public methods:
 * `func New(host string, port int, user string, password string, dbname string) (MySQL, error)`
@@ -37,7 +37,7 @@ Public methods:
 
 ## Implementation details
 
-Structure definition:
+[Structure definition](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42):
 ```go
 // MySQL represents a MySQL-backed store for schedules and terminations
 type MySQL struct {
@@ -45,7 +45,7 @@ type MySQL struct {
 }
 ```
 
-Retreiving the schedule for a given date:
+[Retreiving the schedule for a given date](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L109-L143):
 ```go
 // Retrieve  retrieves the schedule for the given date
 func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error) {
@@ -84,7 +84,7 @@ func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error) {
 }
 ```
 
-Publishing schedule. Note the delay for testing race conditions.
+[Publishing a schedule](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L145-L212). Note the delay for testing race conditions.
 
 ```go
 // Publish publishes the schedule for the given date
@@ -157,7 +157,7 @@ func (m MySQL) PublishWithDelay(date time.Time, sched *schedule.Schedule, delay 
 }
 ```
 
-Checking if a termination is pemitted:
+[Checking if a termination is pemitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297):
 ```go
 / Check checks if a termination is permitted and, if so, records the
 // termination time on the server
@@ -249,7 +249,8 @@ func TestPublishRetrieve(t *testing.T) {
 }
 ```
 
-[Testing for race conditions](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/schedstore_test.go#L185-L253):
+[Testing for race conditions](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/schedstore_test.go#L185-L253). Note that Go's [built-in race detector](https://golang.org/doc/articles/race_detector) wouldn't catch race conditions like this.
+
 ```go
 func TestScheduleAlreadyExistsConcurrency(t *testing.T) {
     // ...
@@ -297,8 +298,9 @@ func TestScheduleAlreadyExistsConcurrency(t *testing.T) {
 
 ## Observations
 
-* It's common for DAOs to try to try to abstract away the nature of the storage as much as possible. Here, while the interface does not give away the nature of the storage, the name itself does: `MySQL`.
+* It's common for DAOs to try to abstract away the nature of the storage as much as possible. Here, while the interface does not give away the nature of the storage, the name `MySQL` does.
 * The names of the [`Check`](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L266) method seems to imply that it's side-effect free, but it actually records the termination time.
+* It could run a little faster if [statement were prepared](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L185-L186) during the [initialization](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L85-L93). Read more about [using prepared statements in Go](https://golang.org/doc/database/prepared-statements).
 
 ## Related
 
@@ -306,6 +308,7 @@ DAO implementations are [numerous on GitHub](https://github.com/search?q=%22data
 
 ## References
 
+* [GitHub repo](https://github.com/Netflix/chaosmonkey)
+* [Documentation](https://netflix.github.io/chaosmonkey/)
 * [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering)
 * [Principles of Chaos Engineering](https://principlesofchaos.org/)
-* [Documentation](https://netflix.github.io/chaosmonkey/)
