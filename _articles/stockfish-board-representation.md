@@ -1,9 +1,9 @@
 ---
 title:  "Stockfish - Chess board representation [C++]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-08-27T14:46:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: C++
 project:
     name: Stockfish
@@ -24,11 +24,18 @@ A chess engine needs to represent the chess board. Board representation is funda
 
 ## Overview
 
-Stockfish has the `Position` class representing a chess position. It makes use of various clever, while standard, data structures and techniques, such as [BitBoards](https://www.chessprogramming.org/Bitboards).
+Stockfish has the [`Position`](https://github.com/official-stockfish/Stockfish/blob/8fc297c50647317185d4c41b3443a0e686412681/src/position.h#L74-L202) class representing a chess position. It makes use of various clever, while standard, data structures and techniques, such as [BitBoards](https://www.chessprogramming.org/Bitboards).
 
 ## Implementation details
 
-Declaration:
+Rather than try to explain the implementation, we will just explain some terminology and encourage you to read the code:
+* Bitboard ([Chess Programming](https://www.chessprogramming.org/Bitboards), [Wikipedia](https://en.wikipedia.org/wiki/Bitboard)) - bit array data structure, where each bit corresponds to a game board space. This allows parallel bitwise operations to set or query the game state, or determine moves or plays in the game.
+* [Ply](https://en.wikipedia.org/wiki/Ply_(game_theory)) - one turn taken by one side.
+* [50 move rule](https://en.wikipedia.org/wiki/Fifty-move_rule) - states that a player can claim a draw if no capture has been made and no pawn has been moved in the last fifty moves.
+* [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) - Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular board position of a chess game.
+* [Pseudo-legal move](https://www.chessprogramming.org/Pseudo-Legal_Move) - is legal in the sense that it is consistent with the current board representation it is assigned to, but may still be illegal if they leave the own king in check.
+
+[Declaration](https://github.com/official-stockfish/Stockfish/blob/8fc297c50647317185d4c41b3443a0e686412681/src/position.h#L74-L202):
 
 ```c++
 /// Position class stores information regarding the board representation as
@@ -162,7 +169,7 @@ private:
 };
 ```
 
-Putting a piece:
+[Putting a piece](https://github.com/official-stockfish/Stockfish/blob/8fc297c50647317185d4c41b3443a0e686412681/src/position.h#L374-L382):
 ```c++
 inline void Position::put_piece(Piece pc, Square s) {
 
@@ -396,13 +403,6 @@ void Position::do_move(Move m, StateInfo& newSt, bool givesCheck) {
 }
 ```
 
-Rather than explain the implementation, we will just explain some terminology used throughout the code:
-* Bitboard ([Chess Programming](https://www.chessprogramming.org/Bitboards), [Wikipedia](https://en.wikipedia.org/wiki/Bitboard)) - bit array data structure, where each bit corresponds to a game board space. This allows parallel bitwise operations to set or query the game state, or determine moves or plays in the game.
-* [Ply](https://en.wikipedia.org/wiki/Ply_(game_theory)) - one turn taken by one side.
-* [50 move rule](https://en.wikipedia.org/wiki/Fifty-move_rule) - states that a player can claim a draw if no capture has been made and no pawn has been moved in the last fifty moves.
-* [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) - Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular board position of a chess game.
-* [Pseudo-legal move](https://www.chessprogramming.org/Pseudo-Legal_Move) - is legal in the sense that it is consistent with the current board representation it is assigned to, but may still be illegal if they leave the own king in check.
-
 ## Testing
 
 Stockfish is tested with [Fishtest](https://github.com/glinscott/fishtest), a distributed task queue for testing chess engines.
@@ -410,6 +410,7 @@ Stockfish is tested with [Fishtest](https://github.com/glinscott/fishtest), a di
 ## Observations
 
 * A significant part of the code is dedicated to somewhat rare rules of the game: en-passant, 50 move, castling rights.
+* A lot of bit arithmetics is going there. E.g. [`if (   (int(to) ^ int(from)) == 16`](https://github.com/official-stockfish/Stockfish/blob/8fc297c50647317185d4c41b3443a0e686412681/src/position.cpp#L815) means that `from` is two rows away from `to`.
 
 ## Related
 
@@ -417,7 +418,7 @@ Stockfish is tested with [Fishtest](https://github.com/glinscott/fishtest), a di
 
 ## References
 
-* [Github Repo](https://github.com/official-stockfish/Stockfish)
+* [GitHub Repo](https://github.com/official-stockfish/Stockfish)
 * [Board Representation on Chess Programming Wiki](https://www.chessprogramming.org/Board_Representation)
 * [Board Representation on Wikipedia](https://en.wikipedia.org/wiki/Board_representation_(computer_chess))
 * [How Stockfish Works: An Evaluation of the Databases Behind the Top Open-Source Chess Engine](http://rin.io/chess-engine/)
