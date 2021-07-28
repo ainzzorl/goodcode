@@ -1,9 +1,9 @@
 ---
 title:  "AWS CLI - Shorthand Parser [Python]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T15:53:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Python
 project:
   name: AWS CLI
@@ -16,7 +16,7 @@ tags: [cli, parsing, visitor]
 
 ## Context
 
-AWS CLI provides a unified command line interface to Amazon Web Services.
+AWS CLI provides a unified command line interface to [Amazon Web Services](https://aws.amazon.com/).
 
 AWS CLI can accept many of its option parameters in JSON format. However, it can be tedious to enter large JSON lists or structures on the command line. To make this easier, the AWS CLI also supports a shorthand syntax that enables a simpler representation of your option parameters than using the full JSON format.
 
@@ -38,11 +38,11 @@ These shorthand commands need to be parsed. The implementation is complicated by
 
 ## Overview
 
-It's get straight to the code.
+When the [argument parser](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/argprocess.py#L382-L399) sees that an argument [should be parsed as a shorthand](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/argprocess.py#L382-L399), it passes it down to the [`ShorthandParser`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) and then applies the [compatibility wrapper](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L420-L445).
 
 ## Implementation details
 
-[The code](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is quite clear and self-documenting:
+[The code for the shorthand parser](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is quite clear and self-documenting:
 
 ```python
 class ShorthandParser(object):
@@ -310,7 +310,8 @@ class ShorthandParser(object):
             self._index += 1
 ```
 
-[Backwards-compatibility layer](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L420-L445):
+[Backwards-compatibility layer](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L420-L445). It uses the classical [Visitor pattern](https://en.wikipedia.org/wiki/Visitor_pattern) to process the output of the parser.
+
 ```python
 class BackCompatVisitor(ModelVisitor):
     def _visit_list(self, parent, shape, name, value):
@@ -340,7 +341,7 @@ class BackCompatVisitor(ModelVisitor):
                 parent[name] = False
 ```
 
-[It's purpose expained](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L29-L38):
+[Its purpose expained](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L29-L38):
 ```python
 """
 However, because there was a pre-existing shorthand parser, we need
@@ -394,14 +395,12 @@ E.g. see [happy tests](https://github.com/aws/aws-cli/blob/45b0063b2d0b245b17a57
 
 ## Observations
 
-N/A
-
-## Related
-
-N/A
+* Every method of [`ShorthandParser`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is very short and only does one thing.
+* Many parsing methods start with a comment explaining the format of the string they are parsing. E.g. [`# keyval = key "=" [values]`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) in the beginning of the [`_keyval`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) method makes it very clear what this method does.
 
 ## References
 
-* [Github repo](https://github.com/aws/aws-cli)
+* [GitHub repo](https://github.com/aws/aws-cli)
 * [Pull request where it was first added](https://github.com/aws/aws-cli/pull/1444/files)
 * [Shorthand syntax doc](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-shorthand.html)
+* [Zero-Overhead Tree Processing with the Visitor Pattern - understand the Visitor pattern](https://www.lihaoyi.com/post/ZeroOverheadTreeProcessingwiththeVisitorPattern.html)
