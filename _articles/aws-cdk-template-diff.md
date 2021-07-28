@@ -1,9 +1,9 @@
 ---
 title:  "AWS CDK - Computing diff between infrastructure templates [TypeScript]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T14:26:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: TypeScript
 project:
   name: AWS CDK
@@ -16,13 +16,9 @@ tags: [aws, cloud, diff, infrastructure-as-code]
 
 ## Context
 
-*Give a high-level description of the project. Explain the part(s) of it that include the example in more detail.*
+CDK (Cloud Development Kit) is an [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) software tool created by [AWS](https://aws.amazon.com/). CDK is used to synthesize and deploy [CloudFormation](https://aws.amazon.com/cloudformation/) infrastructure templates.
 
-CDK (Cloud Development Kit) is an [infrastructure as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) software tool created by [AWS](https://aws.amazon.com/).
-
-CDK is used to synthesize and deploy [CloudFormation](https://aws.amazon.com/cloudformation/) infrastructure templates. 
-
-Infrastructures are made up of resources (virtual machines, database tables, load balancers, etc.) Resources can depend on other resources.
+Infrastructures are made up of resources (virtual machines, database tables, load balancers, etc.). Resources can depend on other resources.
 
 ## Problem
 
@@ -30,17 +26,19 @@ Synthesized infrastructure templates need to be compared to the existing state o
 
 ## Overview
 
-There are different diff handlers for 9 top-level keys (`AWSTemplateFormatVersion`, `Description`, `Metadata`, `Parameters`, `Mappings`, `Conditions`, `Transform`, `Resources`, `Outputs`).
+There are different diff handlers for the 9 top-level keys (`AWSTemplateFormatVersion`, `Description`, `Metadata`, `Parameters`, `Mappings`, `Conditions`, `Transform`, `Resources`, `Outputs`).
 
 It calculates what was added, removed or updated. For each changed resource it decides the impact: if it will be updated, destroyed, orphaned (excluded from the template but not actually deleted).
 
 Changes to one resource can trigger changes to resourced dependant on it. These changes are propagated until convergence.
 
-The diff can be visualized.
+There's a method to print the diff in a human-readable format.
 
 ## Implementation details
 
-[Main method](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L31-L78):
+[The implementation](https://github.com/aws/aws-cdk/tree/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff) is rather long; we are just scratching the surface in this review.
+
+[The main method](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L31-L78). First it actually calculates the diff, and then propagates replacements for replaced resources until it converges.
 
 ```typescript
 /**
@@ -93,7 +91,7 @@ export function diffTemplate(currentTemplate: { [key: string]: any }, newTemplat
 }
 ```
 
-[Diffing templates (without propagation)](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L96-L111):
+[Diffing templates (without propagation)](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L96-L111). Most of the work is delegated to [`DIFF_HANDLERS`](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L10-L29).
 ```typescript
 function calculateTemplateDiff(currentTemplate: { [key: string]: any }, newTemplate: { [key: string]: any }): types.TemplateDiff {
   const differences: types.ITemplateDiff = {};
@@ -167,14 +165,14 @@ export function diffResource(oldValue?: types.Resource, newValue?: types.Resourc
 }
 ```
 
-[Rendering in a human-readable form](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/format.ts)
+[Rendering diffs in a human-readable form (not listed).](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/format.ts)
 
 ## Testing
 
 
 [The test suite](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts) is quite comprehensive.
 
-Basic test for when a resource is added:
+[Basic test for adding a resource](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts#L32-L45):
 ```typescript
 test('when a resource is created', () => {
   const currentTemplate = { Resources: {} };
@@ -192,7 +190,7 @@ test('when a resource is created', () => {
 });
 ```
 
-Test cascading changes:
+[Test cascading changes](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts#L279-L323):
 ```typescript
 test('resource replacement is tracked through references', () => {
   // If a resource is replaced, then that change shows that references are
@@ -241,7 +239,7 @@ test('resource replacement is tracked through references', () => {
 });
 ```
 
-Testing that it understands that the order of elements in an array matters in some places and doesn't matter is some other:
+[Testing that it understands that the order of elements in an array matters in some places and doesn't matter is some other](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts#L434-L460):
 
 ```typescript
 test('array equivalence is independent of element order in DependsOn expressions', () => {
@@ -303,9 +301,7 @@ test('arrays of different length are considered unequal in DependsOn expressions
 
 ## Observations
 
-*Add more observations about the code.*
-
-TODO
+* Some resources ([IAM](https://github.com/aws/aws-cdk/tree/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/iam), [networking](https://github.com/aws/aws-cdk/tree/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/network)) require special treatment.
 
 ## Related
 
@@ -313,7 +309,7 @@ TODO
 
 ## References
 
-* [Github Repo](https://github.com/aws/aws-cdk)
+* [GitHub Repo](https://github.com/aws/aws-cdk)
 * [Product website](https://aws.amazon.com/cdk/)
 * [Documentation](https://docs.aws.amazon.com/cdk/index.html)
 * [Sample templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-us-west-2.html)
