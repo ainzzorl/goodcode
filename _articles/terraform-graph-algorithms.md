@@ -1,7 +1,7 @@
 ---
 title:  "Terraform - Graph Algorithms [Go]"
 layout: default
-last_modified_date: 2021-07-27T20:27:00+0300
+last_modified_date: 2021-07-28T08:36:00+0300
 
 status: PUBLISHED
 language: Go
@@ -318,3 +318,4 @@ See more tests in [dag_test.go](https://github.com/hashicorp/terraform/blob/72a7
 * [GitHub Repo](https://github.com/hashicorp/terraform)
 * [Product website](https://www.terraform.io/)
 * [Documentation](https://www.terraform.io/docs/)
+* [Applying Graph Theory to Infrastructure as Code (Video)](https://www.youtube.com/watch?v=Ce3RNfRbdZ0)
