@@ -1,9 +1,9 @@
 ---
 title:  "ZooKeeper - Trie [Java]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T19:29:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Java
 project:
     name: Apache ZooKeeper
@@ -16,7 +16,7 @@ tags: [trie, data-structure, algorithm]
 
 ## Context
 
-Apache ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. ZooKeeper operates with znodes - data objects organized hierarchically as in file systems.
+Apache ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. ZooKeeper manipulates [znodes](https://zookeeper.apache.org/doc/r3.1.2/zookeeperProgrammers.html#sc_zkDataModel_znodes) - data objects organized hierarchically as in file systems.
 
 ## Problem
 
@@ -25,6 +25,8 @@ As a part of the quota management, ZooKeeper needs to find the longest stored pr
 ## Overview
 
 ZooKeeper implements the [Trie](https://en.wikipedia.org/wiki/Trie) data structure to find the longest stored prefix for a given path.
+
+The implementation is thread-safe. [`ReadWriteLock`](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReadWriteLock.html) is used - the read lock may be held simultaneously by multiple reader threads, so long as there are no writers. The write lock is exclusive.
 
 ## Implementation details
 
@@ -395,13 +397,9 @@ public void findMaxPrefixChildrenPrefix() {
 
 ## Observations
 
-N/A
-
-## Related
-
-N/A
+* [Deques](https://en.wikipedia.org/wiki/Double-ended_queue) [are used](https://github.com/apache/zookeeper/blob/e642a325b91ab829aefa47708c7b4b45811d2d23/zookeeper-server/src/main/java/org/apache/zookeeper/common/PathTrie.java#L324-L330) to temporarily store values in paths from nodes up to the root. Deques are designed to support element insertion and removal at both ends, but this implementation only adds elements to the front and never removes elements. So a simple `LinkedList` would do. However, `ArrayDeque` may be more performant.
 
 ## References
 
 * [GitHub repo](https://github.com/apache/zookeeper)
-* [Trie on Wikipedia]([Trie](https://en.wikipedia.org/wiki/Trie)
+* [Trie on Wikipedia](https://en.wikipedia.org/wiki/Trie)
