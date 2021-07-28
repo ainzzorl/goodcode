@@ -1,9 +1,9 @@
 ---
 title:  "HTTPie - Reporting Download Progress [Python]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T20:04:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Python
 project:
     name: HTTPie
@@ -20,11 +20,11 @@ HTTPie (pronounced aitch-tee-tee-pie) is a command-line HTTP client. Its goal is
 
 ## Problem
 
-HTTPie features a download mode in which it acts similarly to wget. When enabled using the --download, -d flag, a progress bar must be shown while the response body is being saved to a file.
+HTTPie features a download mode in which it acts similarly to wget. When enabled using the `--download, -d` flag, a progress bar must be shown while the response body is being saved to a file.
 
 ## Overview
 
-Status reporting runs in its own thread. It wakes up every `tick` seconds, calculates metrics (download percentage, downloaded size, speed, eta) and writes them to console. When it's done, it writes a summary.
+Status reporting runs in its own thread. It wakes up every `tick` seconds, compares the current state to the previous, calculates metrics (download percentage, downloaded size, speed, ETA) and writes them to console. When it's done, it writes a summary.
 
 The speed is calculated on the interval since the last update. ETA is calculated simply as `(total_size - downloaded) / speed`.
 
@@ -145,7 +145,7 @@ class ProgressReporterThread(threading.Thread):
         self.output.flush()
 ```
 
-[Format strings](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25-L34) are defined above:
+[The format strings](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25-L34) are defined above:
 ```python
 CLEAR_LINE = '\r\033[K'
 PROGRESS = (
@@ -157,6 +157,51 @@ PROGRESS = (
 PROGRESS_NO_CONTENT_LENGTH = '{downloaded: >10} {speed: >10}/s'
 SUMMARY = 'Done. {downloaded} in {time:0.5f}s ({speed}/s)\n'
 SPINNER = '|/-\\'
+```
+
+[A nice method to "return a humanized string representation of a number of bytes"](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/utils.py#L23-L64), borrowed from elsewhere:
+
+```python
+def humanize_bytes(n, precision=2):
+    # Author: Doug Latornell
+    # Licence: MIT
+    # URL: https://code.activestate.com/recipes/577081/
+    """Return a humanized string representation of a number of bytes.
+    >>> humanize_bytes(1)
+    '1 B'
+    >>> humanize_bytes(1024, precision=1)
+    '1.0 kB'
+    >>> humanize_bytes(1024 * 123, precision=1)
+    '123.0 kB'
+    >>> humanize_bytes(1024 * 12342, precision=1)
+    '12.1 MB'
+    >>> humanize_bytes(1024 * 12342, precision=2)
+    '12.05 MB'
+    >>> humanize_bytes(1024 * 1234, precision=2)
+    '1.21 MB'
+    >>> humanize_bytes(1024 * 1234 * 1111, precision=2)
+    '1.31 GB'
+    >>> humanize_bytes(1024 * 1234 * 1111, precision=1)
+    '1.3 GB'
+    """
+    abbrevs = [
+        (1 << 50, 'PB'),
+        (1 << 40, 'TB'),
+        (1 << 30, 'GB'),
+        (1 << 20, 'MB'),
+        (1 << 10, 'kB'),
+        (1, 'B')
+    ]
+
+    if n == 1:
+        return '1 B'
+
+    for factor, suffix in abbrevs:
+        if n >= factor:
+            break
+
+    # noinspection PyUnboundLocalVariable
+    return f'{n / factor:.{precision}f} {suffix}'
 ```
 
 ## Testing
@@ -180,8 +225,8 @@ self._spinner_pos = (self._spinner_pos + 1) % len(SPINNER)
 
 ## Related
 
-N/A
+* [cli-progress](https://github.com/npkgz/cli-progress) - "easy to use progress-bar for command-line/terminal applications".
 
 ## References
 
-* [Github repo](https://github.com/httpie/httpie)
+* [GitHub repo](https://github.com/httpie/httpie)
