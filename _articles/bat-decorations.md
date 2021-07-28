@@ -1,9 +1,9 @@
 ---
 title:  "Bat - Text decoration [Rust]"
 layout: default
-last_modified_date: 2021-07-27T13:48:00+0300
+last_modified_date: 2021-07-28T17:08:00+0300
 
-status: DRAFT
+status: PUBLISHED
 language: Rust
 project:
   name: Bat
@@ -20,17 +20,17 @@ Bat is a cat(1) clone with syntax highlighting and Git integration.
 
 ## Problem
 
-Bat displays texts with "decorations": line numbers, change indicator, grid border. These decorations used in any combination depending on user input.
+Bat displays texts with "decorations": line numbers, change indicator, grid border. These decorations can be used in any combination depending on the user input.
 
 ## Overview
 
-Text printing is done by `InteractivePrinter`. `InteractivePrinter` maintains a list of `Decoration`s and populates it based on user config.
+Text printing is done by [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114). [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114) maintains a list of [`Decoration`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20)s and populates it based on user config.
 
-`Decoration` trait has method `generate` accepting `line_number`, `continuation` (TODO: what is this?) and `InteractivePrinter` and returning `DecorationText`. The printer then prints all enabled decorations before printing the line content.
+[`Decoration`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20) trait has method `generate` accepting `line_number`, `continuation` (if the line is being broken into shorter lines) and [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114) and returning [`DecorationText`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L6-L10). The printer then prints all enabled decorations before printing the line content.
 
 ## Implementation details
 
-[Decoration trait](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20):
+[`Decoration` trait](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20):
 ```rust
 pub(crate) trait Decoration {
     fn generate(
@@ -156,12 +156,8 @@ It's tested with "snapshot tests". E.g. [this test input](https://github.com/sha
 
 ## Observations
 
-* It resembles the [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern), but it's not quite it. The classical Decorator wraps the original class to augment its behavior without changing its interface.
-
-## Related
-
-N/A
+* It resembles the [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern), but it's not quite the same. The classical Decorator wraps the original class to augment its behavior without changing its interface.
 
 ## References
 
-* [Github repo](https://github.com/sharkdp/bat)
+* [GitHub repo](https://github.com/sharkdp/bat)
