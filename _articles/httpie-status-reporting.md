@@ -211,7 +211,7 @@ Automated testing for this functionality seems to be lacking.
 ## Observations
 
 * The spinner simply iterates between the 4 states: vertical line, forward slash, horizontal line, back slash.
-* Updating spinner position could be simplified (arguably it would make it less clear, though):
+* Updating spinner position could be simplified:
 ```python
 self._spinner_pos = (self._spinner_pos + 1
                         if self._spinner_pos + 1 != len(SPINNER)
@@ -221,6 +221,7 @@ to
 ```python
 self._spinner_pos = (self._spinner_pos + 1) % len(SPINNER)
 ```
+  * [Done!](https://github.com/httpie/httpie/pull/1111)
 * To clear the line, it prints [this magic string](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25): ```CLEAR_LINE = '\r\033[K'```. It's a [CSI sequence](https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences).
 
 ## Related
