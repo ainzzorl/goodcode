@@ -1,7 +1,7 @@
 ---
 title:  "Error Prone - Testing Bug Checkers [Java]"
 layout: default
-last_modified_date: 2021-07-27T18:22:00+0300
+last_modified_date: 2021-07-29T14:25:00+0300
 
 status: PUBLISHED
 language: Java
@@ -26,7 +26,7 @@ There must be an easy and uniform way to test checkers. Tests must be easy to re
 
 ## Overview
 
-Error Prone implements a helper class, [`CompilationTestHelper`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java), to simplicy writing bug checkers.
+Error Prone implements a helper class, [`CompilationTestHelper`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java), to simplify writing bug checkers.
 
 It is initialized with the checker under test and accepts source code to run the checker on. That code can either be inlined in the test, or read from another file.
 

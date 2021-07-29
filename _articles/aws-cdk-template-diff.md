@@ -1,7 +1,7 @@
 ---
 title:  "AWS CDK - Computing Diff Between Infrastructure Templates [TypeScript]"
 layout: default
-last_modified_date: 2021-07-28T14:26:00+0300
+last_modified_date: 2021-07-29T14:25:00+0300
 
 status: PUBLISHED
 language: TypeScript
@@ -30,7 +30,7 @@ There are different diff handlers for the 9 top-level keys (`AWSTemplateFormatVe
 
 It calculates what was added, removed or updated. For each changed resource it decides the impact: if it will be updated, destroyed, orphaned (excluded from the template but not actually deleted).
 
-Changes to one resource can trigger changes to resourced dependant on it. These changes are propagated until convergence.
+Changes to one resource can trigger changes to resourced dependent on it. These changes are propagated until convergence.
 
 There's a method to print the diff in a human-readable format.
 

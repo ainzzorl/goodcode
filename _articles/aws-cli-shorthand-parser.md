@@ -1,7 +1,7 @@
 ---
 title:  "AWS CLI - Shorthand Parser [Python]"
 layout: default
-last_modified_date: 2021-07-28T15:53:00+0300
+last_modified_date: 2021-07-29T14:25:00+0300
 
 status: PUBLISHED
 language: Python
@@ -341,7 +341,7 @@ class BackCompatVisitor(ModelVisitor):
                 parent[name] = False
 ```
 
-[Its purpose expained](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L29-L38):
+[Its purpose explained](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L29-L38):
 ```python
 """
 However, because there was a pre-existing shorthand parser, we need

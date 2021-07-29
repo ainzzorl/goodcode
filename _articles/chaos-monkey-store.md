@@ -1,7 +1,7 @@
 ---
 title:  "Chaos Monkey - MySQL-backed Store for Schedules and Terminations [Go]"
 layout: default
-last_modified_date: 2021-07-28T09:00:00+0300
+last_modified_date: 2021-07-29T14:25:00+0300
 
 status: PUBLISHED
 language: Go
@@ -45,7 +45,7 @@ type MySQL struct {
 }
 ```
 
-[Retreiving the schedule for a given date](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L109-L143):
+[Retrieving the schedule for a given date](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L109-L143):
 ```go
 // Retrieve  retrieves the schedule for the given date
 func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error) {
@@ -157,7 +157,7 @@ func (m MySQL) PublishWithDelay(date time.Time, sched *schedule.Schedule, delay 
 }
 ```
 
-[Checking if a termination is pemitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297):
+[Checking if a termination is permitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297):
 ```go
 / Check checks if a termination is permitted and, if so, records the
 // termination time on the server
