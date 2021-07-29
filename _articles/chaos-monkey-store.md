@@ -312,3 +312,9 @@ DAO implementations are [numerous on GitHub](https://github.com/search?q=%22data
 * [Documentation](https://netflix.github.io/chaosmonkey/)
 * [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering)
 * [Principles of Chaos Engineering](https://principlesofchaos.org/)
+
+## Copyright notice
+
+Bat is licensed under the [Apache License 2.0](https://github.com/Netflix/chaosmonkey/blob/master/LICENSE).
+
+Copyright 2015 Netflix, Inc.

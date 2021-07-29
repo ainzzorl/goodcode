@@ -404,3 +404,9 @@ E.g. see [happy tests](https://github.com/aws/aws-cli/blob/45b0063b2d0b245b17a57
 * [Pull request where it was first added](https://github.com/aws/aws-cli/pull/1444/files)
 * [Shorthand syntax doc](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-shorthand.html)
 * [Zero-Overhead Tree Processing with the Visitor Pattern - understand the Visitor pattern](https://www.lihaoyi.com/post/ZeroOverheadTreeProcessingwiththeVisitorPattern.html)
+
+## Copyright notice
+
+AWS CDK is licensed under the [Apache License 2.0](https://github.com/aws/aws-cli/blob/develop/LICENSE.txt).
+
+Copyright 2012-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.

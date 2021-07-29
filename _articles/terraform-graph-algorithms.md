@@ -319,3 +319,7 @@ See more tests in [dag_test.go](https://github.com/hashicorp/terraform/blob/72a7
 * [Product website](https://www.terraform.io/)
 * [Documentation](https://www.terraform.io/docs/)
 * [Applying Graph Theory to Infrastructure as Code (Video)](https://www.youtube.com/watch?v=Ce3RNfRbdZ0)
+
+## Copyright notice
+
+Terraform is licensed under the [Mozilla Public License 2.0](https://github.com/hashicorp/terraform/blob/main/LICENSE).

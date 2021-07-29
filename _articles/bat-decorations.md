@@ -161,3 +161,9 @@ It's tested with "snapshot tests". E.g. [this test input](https://github.com/sha
 ## References
 
 * [GitHub repo](https://github.com/sharkdp/bat)
+
+## Copyright notice
+
+Bat is licensed under the [Apache License 2.0](https://github.com/sharkdp/bat/blob/master/LICENSE-APACHE).
+
+Copyright (c) 2018-2021 bat-developers.

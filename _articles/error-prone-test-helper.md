@@ -288,3 +288,7 @@ E.g. SonarQube's [CheckVerifier](https://github.com/SonarSource/sonar-java/blob/
 
 * [GitHub Repo](https://github.com/google/error-prone)
 * [Writing a check](https://github.com/google/error-prone/wiki/Writing-a-check)
+
+## Copyright notice
+
+Error Prone is licensed under the [Apache License 2.0](https://github.com/google/error-prone/blob/master/COPYING).

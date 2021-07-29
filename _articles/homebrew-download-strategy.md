@@ -465,3 +465,9 @@ end
 * [GitHub Repo](https://github.com/Homebrew/brew)
 * [Documentation](https://docs.brew.sh)
 * [Homebrew Terminology](https://docs.brew.sh/Formula-Cookbook#homebrew-terminology)
+
+## Copyright notice
+
+Homebrew is licensed under the [BSD 2-Clause "Simplified" License](https://github.com/Homebrew/brew/blob/master/LICENSE.txt).
+
+Copyright (c) 2009-present, Homebrew contributors

@@ -422,3 +422,9 @@ Stockfish is tested with [Fishtest](https://github.com/glinscott/fishtest), a di
 * [Board Representation on Chess Programming Wiki](https://www.chessprogramming.org/Board_Representation)
 * [Board Representation on Wikipedia](https://en.wikipedia.org/wiki/Board_representation_(computer_chess))
 * [How Stockfish Works: An Evaluation of the Databases Behind the Top Open-Source Chess Engine](http://rin.io/chess-engine/)
+
+## Copyright notice
+
+Stockfish is licensed under the [GNU General Public License v3.0](https://github.com/official-stockfish/Stockfish/blob/master/Copying.txt).
+
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>

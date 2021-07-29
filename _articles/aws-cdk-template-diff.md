@@ -313,3 +313,9 @@ test('arrays of different length are considered unequal in DependsOn expressions
 * [Product website](https://aws.amazon.com/cdk/)
 * [Documentation](https://docs.aws.amazon.com/cdk/index.html)
 * [Sample templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-us-west-2.html)
+
+## Copyright notice
+
+AWS CDK is licensed under the [Apache License 2.0](https://github.com/aws/aws-cdk/blob/master/LICENSE).
+
+Copyright 2018-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.

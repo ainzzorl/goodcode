@@ -44,3 +44,9 @@ tags: ['whatever', 'tags', 'you', 'find', 'relevant']
 ## References
 
 *Add references to relevant documents.*
+
+## Copyright notice
+
+*What licence is the project under.*
+
+*Who owns the copyright.*

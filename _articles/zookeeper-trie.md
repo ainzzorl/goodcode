@@ -403,3 +403,7 @@ public void findMaxPrefixChildrenPrefix() {
 
 * [GitHub repo](https://github.com/apache/zookeeper)
 * [Trie on Wikipedia](https://en.wikipedia.org/wiki/Trie)
+
+## Copyright notice
+
+Zookeeper is licensed under the [Apache License 2.0](https://github.com/apache/zookeeper/blob/master/LICENSE.txt).

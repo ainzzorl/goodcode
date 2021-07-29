@@ -231,3 +231,9 @@ self._spinner_pos = (self._spinner_pos + 1) % len(SPINNER)
 ## References
 
 * [GitHub repo](https://github.com/httpie/httpie)
+
+## Copyright notice
+
+HTTPie is licensed under the [BSD 3-Clause "New" or "Revised" License](https://github.com/httpie/httpie/blob/master/LICENSE).
+
+Copyright © 2012-2021 Jakub Roztocil <jakub@roztocil.co>
