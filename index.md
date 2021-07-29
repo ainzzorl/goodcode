@@ -32,13 +32,7 @@ The reader is expected to be able to read non-trivial code in the language used 
 
 ### Who writes these articles?
 
-The founder of the project, [ainzzorl](https://github.com/ainzzorl/goodcode). Future content is expected to be crowd-sourced. Read more about [contributing to the project](#contributing).
-
-We believe that the code speaks for itself, though. Our job is to find interesting examples, provide necessary context and point out certain details.
-
-### Who writes these articles?
-
-The founder of the project, [ainzzorl](https://github.com/ainzzorl/goodcode). Future content is expected to be crowd-sourced. Read more about [contributing to the project](#contributing).
+The founder of the project, [Anton Emelyanov](https://github.com/ainzzorl). Future content is expected to be crowd-sourced. Read more about [contributing to the project](#contributing).
 
 We believe that the code speaks for itself, though. Our job is to find interesting examples, provide necessary context and point out certain details.
 
