@@ -1,5 +1,5 @@
 ---
-title:  "AWS CDK - Computing diff between infrastructure templates [TypeScript]"
+title:  "AWS CDK - Computing Diff Between Infrastructure Templates [TypeScript]"
 layout: default
 last_modified_date: 2021-07-28T14:26:00+0300
 

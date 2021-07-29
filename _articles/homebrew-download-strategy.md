@@ -1,5 +1,5 @@
 ---
-title:  "Homebrew - Downloading software from a variety of sources [Ruby]"
+title:  "Homebrew - Downloading Software From a Variety of Sources [Ruby]"
 layout: default
 last_modified_date: 2021-07-27T16:09:00+0300
 

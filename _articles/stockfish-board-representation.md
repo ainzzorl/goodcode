@@ -1,5 +1,5 @@
 ---
-title:  "Stockfish - Chess board representation [C++]"
+title:  "Stockfish - Chess Board Representation [C++]"
 layout: default
 last_modified_date: 2021-08-27T14:46:00+0300
 

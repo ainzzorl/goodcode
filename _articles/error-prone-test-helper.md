@@ -1,5 +1,5 @@
 ---
-title:  "Error Prone - Testing bug checkers [Java]"
+title:  "Error Prone - Testing Bug Checkers [Java]"
 layout: default
 last_modified_date: 2021-07-27T18:22:00+0300
 

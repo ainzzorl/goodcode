@@ -1,5 +1,5 @@
 ---
-title:  "Chaos Monkey - MySQL-backed store for schedules and terminations [Go]"
+title:  "Chaos Monkey - MySQL-backed Store for Schedules and Terminations [Go]"
 layout: default
 last_modified_date: 2021-07-28T09:00:00+0300
 
