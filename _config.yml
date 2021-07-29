@@ -89,3 +89,7 @@ aux_links:
   "Code Catalog on GitHub":
     - "//github.com/ainzzorl/goodcode"
 aux_links_new_tab: false
+
+# Google Analytics Tracking
+ga_tracking: UA-198267472-2
+ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings
