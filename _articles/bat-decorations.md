@@ -1,5 +1,5 @@
 ---
-title:  "Bat - Text decoration [Rust]"
+title:  "Bat - Text Decoration [Rust]"
 layout: default
 last_modified_date: 2021-07-28T17:08:00+0300
 
