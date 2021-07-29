@@ -1,6 +1,6 @@
 # Learning from Open Source
 
-If you write code, it's natural to want to get better at it. When you ask someone how to get better at coding, the second most common response (right after writing code) is to read other people's code and to learn from it.
+If you write code, it's natural to want to get better at it. When you ask someone how to get better at coding, the second most common response (right after writing code) is to read other people's code and learn from it.
 
 While it sounds very reasonable, it's hard to implement it in practice. So you find the source for your favorite software on GitHub and start reading it. Firstly, for any established and mature product, the codebase is probably huge, complex, and very hard to get started with. It's unlikely that the design is documented anywhere. Even if the high-level architecture is documented, the structure of the codebase almost certainly isn't. It probably depends on some libraries and frameworks you've never heard of. Unfamiliar terms and creative codenames are all over the place. Making sense of it can be a challenge even for seasoned professionals. And where do you start exploring the code? If you open a random source file, chances are that it's mostly boilerplate code from which you won't learn much.
 
@@ -8,7 +8,7 @@ It doesn't mean that you should not try to understand good open source projects.
 
 [Code Catalog](https://codecatalog.org) offers a more straightforward way to learn from open-source projects. We present a curated collection of annotated code examples that we find instructive. The examples are:
 * Taken from **popular, established open-source projects**.
-* **Instructive**. They solve somewhat general problems, similar to what some other coders on some projects could be facing. They use some pattern you could use some day.
+* **Instructive**. They solve somewhat general problems, similar to what other coders could be facing in their projects. They use patterns that you could apply one day.
 * Somewhat **self-contained**. They can be understood with little knowledge of the surrounding context.
 * **Small**-ish. One example can be read in one sitting.
 * **Non-trivial**.

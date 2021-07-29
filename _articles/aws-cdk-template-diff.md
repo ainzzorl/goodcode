@@ -1,7 +1,7 @@
 ---
 title:  "AWS CDK - Computing Diff Between Infrastructure Templates [TypeScript]"
 layout: default
-last_modified_date: 2021-07-29T14:25:00+0300
+last_modified_date: 2021-07-29T16:03:00+0300
 
 status: PUBLISHED
 language: TypeScript
@@ -22,7 +22,7 @@ Infrastructures are made up of resources (virtual machines, database tables, loa
 
 ## Problem
 
-Synthesized infrastructure templates need to be compared to the existing state of the infrastructure, to see what resources will be created, updated or deleted if the template is deployed. The diff algorithm needs to be aware of the template semantics.
+Synthesized infrastructure templates need to be compared to the existing state of the infrastructure to see what resources will be created, updated or deleted if the template is deployed. The diff algorithm needs to be aware of the template semantics.
 
 ## Overview
 
@@ -30,7 +30,7 @@ There are different diff handlers for the 9 top-level keys (`AWSTemplateFormatVe
 
 It calculates what was added, removed or updated. For each changed resource it decides the impact: if it will be updated, destroyed, orphaned (excluded from the template but not actually deleted).
 
-Changes to one resource can trigger changes to resourced dependent on it. These changes are propagated until convergence.
+Changes to one resource can trigger changes to resources dependent on it. These changes are propagated until convergence.
 
 There's a method to print the diff in a human-readable format.
 
@@ -38,7 +38,7 @@ There's a method to print the diff in a human-readable format.
 
 [The implementation](https://github.com/aws/aws-cdk/tree/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff) is rather long; we are just scratching the surface in this review.
 
-[The main method](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L31-L78). First it actually calculates the diff, and then propagates replacements for replaced resources until it converges.
+[The main method](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/lib/diff-template.ts#L31-L78). First it actually calculates the diff and then propagates replacements for replaced resources until it converges.
 
 ```typescript
 /**
@@ -239,7 +239,7 @@ test('resource replacement is tracked through references', () => {
 });
 ```
 
-[Testing that it understands that the order of elements in an array matters in some places and doesn't matter is some other](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts#L434-L460):
+[Testing](https://github.com/aws/aws-cdk/blob/d88b45eb21bcd051146477e3c97de7dd7b8634d3/packages/%40aws-cdk/cloudformation-diff/test/diff-template.test.ts#L434-L460) that it understands that the order of elements in an array matters in some places and doesn't matter in others:
 
 ```typescript
 test('array equivalence is independent of element order in DependsOn expressions', () => {

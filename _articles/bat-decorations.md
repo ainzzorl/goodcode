@@ -1,7 +1,7 @@
 ---
 title:  "Bat - Text Decoration [Rust]"
 layout: default
-last_modified_date: 2021-07-28T17:08:00+0300
+last_modified_date: 2021-07-29T16:03:00+0300
 
 status: PUBLISHED
 language: Rust
@@ -16,7 +16,7 @@ tags: [cli, decorator]
 
 ## Context
 
-Bat is a cat(1) clone with syntax highlighting and Git integration.
+Bat is a *cat(1)* clone with syntax highlighting and Git integration.
 
 ## Problem
 
@@ -26,7 +26,7 @@ Bat displays texts with "decorations": line numbers, change indicator, grid bord
 
 Text printing is done by [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114). [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114) maintains a list of [`Decoration`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20)s and populates it based on user config.
 
-[`Decoration`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20) trait has method `generate` accepting `line_number`, `continuation` (if the line is being broken into shorter lines) and [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114) and returning [`DecorationText`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L6-L10). The printer then prints all enabled decorations before printing the line content.
+[`Decoration`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L12-L20) trait has a method `generate` accepting `line_number`, `continuation` (if the line is being broken into shorter lines) and [`InteractivePrinter`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/printer.rs#L102-L114) and returning [`DecorationText`](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L6-L10). The printer then prints all enabled decorations before printing the line content.
 
 ## Implementation details
 
