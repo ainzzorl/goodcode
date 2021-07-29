@@ -42,6 +42,10 @@ The founder of the project, [ainzzorl](https://github.com/ainzzorl/goodcode). Fu
 
 We believe that the code speaks for itself, though. Our job is to find interesting examples, provide necessary context and point out certain details.
 
+### Why did you choose *Example X* from *Project Y* and not something else? It's not nearly the most interesting thing in *Project Y*.
+
+Because we find that *Example X* satisfies the criteria described above. But there's no reason why there can only be one example from *Project Y*. Please [suggest adding another example](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
+
 # Contributing
 
 This project cannot succeed without volunteer effort. Your help in improving existing or adding new articles is very welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
