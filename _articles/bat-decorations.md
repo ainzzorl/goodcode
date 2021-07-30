@@ -2,6 +2,7 @@
 title:  "Bat - Text Decoration [Rust]"
 layout: default
 last_modified_date: 2021-07-29T16:03:00+0300
+nav_order: 8
 
 status: PUBLISHED
 language: Rust

@@ -2,6 +2,7 @@
 title:  "Homebrew - Downloading Software From a Variety of Sources [Ruby]"
 layout: default
 last_modified_date: 2021-07-29T14:25:00+0300
+nav_order: 1
 
 status: PUBLISHED
 language: Ruby

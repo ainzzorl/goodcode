@@ -2,6 +2,7 @@
 title:  "Terraform - Graph Algorithms [Go]"
 layout: default
 last_modified_date: 2021-07-28T08:36:00+0300
+nav_order: 3
 
 status: PUBLISHED
 language: Go

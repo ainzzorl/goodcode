@@ -2,6 +2,7 @@
 title:  "HTTPie - Reporting Download Progress [Python]"
 layout: default
 last_modified_date: 2021-07-28T20:04:00+0300
+nav_order: 10
 
 status: PUBLISHED
 language: Python

@@ -2,6 +2,7 @@
 title:  "ZooKeeper - Trie [Java]"
 layout: default
 last_modified_date: 2021-07-28T19:29:00+0300
+nav_order: 9
 
 status: PUBLISHED
 language: Java

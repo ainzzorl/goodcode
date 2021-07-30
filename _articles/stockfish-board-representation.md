@@ -2,6 +2,7 @@
 title:  "Stockfish - Chess Board Representation [C++]"
 layout: default
 last_modified_date: 2021-08-27T14:46:00+0300
+nav_order: 6
 
 status: PUBLISHED
 language: C++

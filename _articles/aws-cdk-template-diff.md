@@ -2,6 +2,7 @@
 title:  "AWS CDK - Computing Diff Between Infrastructure Templates [TypeScript]"
 layout: default
 last_modified_date: 2021-07-29T16:03:00+0300
+nav_order: 5
 
 status: PUBLISHED
 language: TypeScript

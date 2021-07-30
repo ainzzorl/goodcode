@@ -2,6 +2,7 @@
 title:  "AWS CLI - Shorthand Parser [Python]"
 layout: default
 last_modified_date: 2021-07-29T14:25:00+0300
+nav_order: 7
 
 status: PUBLISHED
 language: Python
