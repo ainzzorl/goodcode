@@ -1,6 +1,8 @@
 <ul class="nav-list">
   {%- assign titled_pages = include.pages
         | where_exp:"item", "item.title != nil" -%}
+  {%- assign collection_key = include.collection_key
+    | where_exp:"item", "item.title != nil" -%}
 
   {%- comment -%}
     The values of `title` and `nav_order` can be numbers or strings.
@@ -64,7 +66,24 @@
         {%- if node.has_children -%}
           <a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
         {%- endif -%}
-        <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+
+        <!--
+          Append suffix with the number of articles for the project/language/tag.
+        -->
+        {%- if collection_key == "languages" -%}
+          {%- assign matching_count = include.articles | where: "language", node.title | size -%}
+          {%- assign suffix = ' (' | append: matching_count | append: ')' -%}
+        {%- elsif collection_key == "tags" -%}
+          {%- assign matching_count = include.articles | where: "tags", node.title | size -%}
+          {%- assign suffix = ' (' | append: matching_count | append: ')' -%}
+        {%- elsif collection_key == "projects" -%}
+          {%- assign matching_count = include.articles | where: "project.key", node.key | size -%}
+          {%- assign suffix = ' (' | append: matching_count | append: ')' -%}
+        {%- else -%}
+          {%- assign suffix = '' -%}
+        {%- endif -%}
+
+        <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }} {{ suffix }}</a>
         {%- if node.has_children -%}
           {%- assign children_list = pages_list | where: "parent", node.title -%}
           <ul class="nav-list ">

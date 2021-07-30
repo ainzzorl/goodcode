@@ -50,6 +50,7 @@ layout: table_wrappers
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
       {% if site.just_the_docs.collections %}
         {% assign collections_size = site.just_the_docs.collections | size %}
+        {% assign articles = site['articles'] %}
         {% for collection_entry in site.just_the_docs.collections %}
           {% assign collection_key = collection_entry[0] %}
           {% assign collection_value = collection_entry[1] %}
@@ -58,7 +59,7 @@ layout: table_wrappers
             {% if collections_size > 1 %}
               <div class="nav-category">{{ collection_value.name }}</div>
             {% endif %}
-            {% include nav.html pages=collection %}
+            {% include nav.html pages=collection collection_key=collection_key articles=articles%}
           {% endif %}
         {% endfor %}
       {% else %}
