@@ -1,7 +1,7 @@
 ---
 title:  "Chaos Monkey - MySQL-backed Store for Schedules and Terminations [Go]"
 layout: default
-last_modified_date: 2021-07-30T12:25:00+0300
+last_modified_date: 2021-08-01T18:27:00+0300
 nav_order: 4
 
 status: PUBLISHED
@@ -158,7 +158,8 @@ func (m MySQL) PublishWithDelay(date time.Time, sched *schedule.Schedule, delay 
 }
 ```
 
-[Checking if a termination is permitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297):
+[Checking if a termination is permitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297). The name of the method seems to imply that it's side-effect free, but it actually records the termination time.
+
 ```go
 / Check checks if a termination is permitted and, if so, records the
 // termination time on the server
@@ -300,7 +301,6 @@ func TestScheduleAlreadyExistsConcurrency(t *testing.T) {
 ## Observations
 
 * It's common for DAOs to try to abstract away the nature of the storage as much as possible. Here, while the interface does not give away the nature of the storage, the name `MySQL` does.
-* The name of the [`Check`](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L266) method seems to imply that it's side-effect free, but it actually records the termination time.
 * It could run a little faster if [statements were prepared](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L185-L186) during the [initialization](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L85-L93). Read more about [using prepared statements in Go](https://golang.org/doc/database/prepared-statements).
 
 ## Related
