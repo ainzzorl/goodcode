@@ -1,7 +1,7 @@
 ---
 title:  "Bat - Text Decoration [Rust]"
 layout: default
-last_modified_date: 2021-07-29T16:03:00+0300
+last_modified_date: 2021-08-01T18:34:00+0300
 nav_order: 8
 
 status: PUBLISHED
@@ -43,6 +43,8 @@ pub(crate) trait Decoration {
     fn width(&self) -> usize;
 }
 ```
+
+It resembles the [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern), but it's not quite the same. The classical Decorator wraps the original class to augment its behavior without changing its interface.
 
 [One of the decorations](https://github.com/sharkdp/bat/blob/375d55aa5d7f3390e33febcc40a8d629b22926ae/src/decorations.rs#L22-L70):
 ```rust
@@ -154,10 +156,6 @@ if self.panel_width > 0 {
 ## Testing
 
 It's tested with "snapshot tests". E.g. [this test input](https://github.com/sharkdp/bat/blob/master/tests/snapshots/sample.rs) is expected to be rendered to [this](https://github.com/sharkdp/bat/blob/master/tests/snapshots/output/numbers.snapshot.txt) when line number decoration is enabled.
-
-## Observations
-
-* It resembles the [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern), but it's not quite the same. The classical Decorator wraps the original class to augment its behavior without changing its interface.
 
 ## References
 
