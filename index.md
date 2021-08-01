@@ -1,3 +1,8 @@
+---
+layout: default
+title: A curated collection of annotated code examples from prominent open-source projects
+---
+
 # Learning from Open Source
 
 When you ask someone how to get better at coding, the second most common response - right after writing more code - is to read other people's code and learn from it.
