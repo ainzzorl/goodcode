@@ -1,7 +1,7 @@
 ---
 title:  "Error Prone - Testing Bug Checkers [Java]"
 layout: default
-last_modified_date: 2021-07-29T14:25:00+0300
+last_modified_date: 2021-08-01T18:24:00+0300
 nav_order: 2
 
 status: PUBLISHED
@@ -93,6 +93,7 @@ public class ComparableTypeTest {
 }
 ```
 
+The interface of the test helper is very instructive and reusable; its implementation - not so much.
 
 ## Implementation details
 
@@ -277,7 +278,6 @@ Main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a
 ## Observations
 
 - Unit tests usually interact with the public interface of the code under test, but here the test interacts with the code under test in a very indirect way - it only supplies it to the helper class, which also sends it through more levels of indirection.
-- The interface of the test helper is very instructive and reusable; its implementation - not so much.
 
 ## Related
 
