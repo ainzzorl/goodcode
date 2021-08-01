@@ -1,7 +1,7 @@
 ---
 title:  "HTTPie - Reporting Download Progress [Python]"
 layout: default
-last_modified_date: 2021-07-28T20:04:00+0300
+last_modified_date: 2021-08-01T18:40:00+0300
 nav_order: 10
 
 status: PUBLISHED
@@ -146,6 +146,10 @@ class ProgressReporterThread(threading.Thread):
         self.output.flush()
 ```
 
+To clear the line, it prints [this magic string](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25): ```CLEAR_LINE = '\r\033[K'```. It's a [CSI sequence](https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences).
+
+The spinner simply [iterates between the 4 states](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L454-L456): vertical line, forward slash, horizontal line, back slash.
+
 [The format strings](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25-L34) are defined above:
 ```python
 CLEAR_LINE = '\r\033[K'
@@ -211,7 +215,6 @@ Automated testing for this functionality seems to be lacking.
 
 ## Observations
 
-* The spinner simply iterates between the 4 states: vertical line, forward slash, horizontal line, back slash.
 * Updating spinner position could be simplified:
 ```python
 self._spinner_pos = (self._spinner_pos + 1
@@ -223,7 +226,6 @@ to
 self._spinner_pos = (self._spinner_pos + 1) % len(SPINNER)
 ```
   * [Done!](https://github.com/httpie/httpie/pull/1111)
-* To clear the line, it prints [this magic string](https://github.com/httpie/httpie/blob/64c31d554a367abf876bd355f07dca6e41476c3f/httpie/downloads.py#L25): ```CLEAR_LINE = '\r\033[K'```. It's a [CSI sequence](https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences).
 
 ## Related
 
