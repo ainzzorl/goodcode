@@ -1,0 +1,12 @@
+{% if page.id contains "/articles/" or page.id contains "/2021/" %}
+<script src="https://utteranc.es/client.js"
+        repo="ainzzorl/goodcode"
+        issue-term="pathname"
+        label="website comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+{% endif %}
+
+<p class="text-small text-grey-dk-100 mb-0">{{ site.footer_content }}</p>
