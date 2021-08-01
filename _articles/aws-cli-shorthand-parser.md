@@ -1,7 +1,7 @@
 ---
 title:  "AWS CLI - Shorthand Parser [Python]"
 layout: default
-last_modified_date: 2021-07-29T14:25:00+0300
+last_modified_date: 2021-08-01T18:32:00+0300
 nav_order: 7
 
 status: PUBLISHED
@@ -43,7 +43,9 @@ When the [argument parser](https://github.com/aws/aws-cli/blob/2f09fcc0e28784aff
 
 ## Implementation details
 
-[The code for the shorthand parser](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is quite clear and self-documenting:
+[The code for the shorthand parser](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is quite clear and self-documenting. Note how every method is very short and only does one thing.
+
+Many parsing methods start with a comment explaining the format of the string they are parsing. E.g. [`# keyval = key "=" [values]`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) in the beginning of the [`_keyval`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) method makes it very clear what this method does.
 
 ```python
 class ShorthandParser(object):
@@ -393,11 +395,6 @@ E.g. see [happy tests](https://github.com/aws/aws-cli/blob/45b0063b2d0b245b17a57
     
     # ...
 ```
-
-## Observations
-
-* Every method of [`ShorthandParser`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L116-L384) is very short and only does one thing.
-* Many parsing methods start with a comment explaining the format of the string they are parsing. E.g. [`# keyval = key "=" [values]`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) in the beginning of the [`_keyval`](https://github.com/aws/aws-cli/blob/2f09fcc0e28784affb472d9aa0d3dd2c3ab513de/awscli/shorthand.py#L188) method makes it very clear what this method does.
 
 ## References
 
