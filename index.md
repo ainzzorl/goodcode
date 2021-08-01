@@ -1,15 +1,15 @@
 # Learning from Open Source
 
-If you write code, it's natural to want to get better at it. When you ask someone how to get better at coding, the second most common response (right after writing code) is to read other people's code and learn from it.
+When you ask someone how to get better at coding, the second most common response - right after writing more code - is to read other people's code and learn from it.
 
-While it sounds very reasonable, it's hard to implement it in practice. So you find the source for your favorite software on GitHub and start reading it. Firstly, for any established and mature product, the codebase is probably huge, complex, and very hard to get started with. It's unlikely that the design is documented anywhere. Even if the high-level architecture is documented, the structure of the codebase almost certainly isn't. It probably depends on some libraries and frameworks you've never heard of. Unfamiliar terms and creative codenames are all over the place. Making sense of it can be a challenge even for seasoned professionals. And where do you start exploring the code? If you open a random source file, chances are that it's mostly boilerplate code from which you won't learn much.
+While it sounds very reasonable, it's hard to implement it in practice. So you find the source for your favorite software on GitHub and start reading it. Firstly, for any established and mature product, the codebase is probably huge, complex and very hard to get started with. It's unlikely that the design is documented anywhere. Even if the high-level architecture is documented, the structure of the codebase almost certainly isn't. It probably depends on some libraries and frameworks you've never heard of. Unfamiliar terms and creative codenames are all over the place. Making sense of it can be a challenge even for seasoned professionals. And how do you even start exploring the code? Open a random source file?
 
 It doesn't mean that you should not try to understand good open source projects. You should, and the experience can be very rewarding. Yet, it's not an easy way, and the learning curve will be steep. 
 
-[Code Catalog](https://codecatalog.org) offers a more straightforward way to learn from open-source projects. We present a curated collection of annotated code examples that we find instructive. The examples are:
+[Code Catalog](https://codecatalog.org) offers a more straightforward way to learn from open-source projects by presenting a curated collection of annotated code examples that we find instructive. The examples are:
 * Taken from **popular, established open-source projects**.
-* **Instructive**. They solve somewhat general problems, similar to what other coders could be facing in their projects. They use patterns that you could apply one day.
-* Somewhat **self-contained**. They can be understood with little knowledge of the surrounding context.
+* **Instructive**. They solve general problems, similar to what other coders could be facing in their projects. They use patterns that you could apply one day.
+* Mostly **self-contained**. They can be understood with little knowledge of the surrounding context.
 * **Small**-ish. One example can be read in one sitting.
 * **Non-trivial**.
 * **Good code!** At least in our opinion.
@@ -38,7 +38,7 @@ We believe that the code speaks for itself, though. Our job is to find interesti
 
 ### Why did you choose *Example X* from *Project Y* and not something else? It's not nearly the most interesting thing in *Project Y*.
 
-Because we find that *Example X* satisfies the criteria described above. But there's no reason why there can only be one example from *Project Y*. Please [suggest adding another example](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
+Because we find that *Example X* satisfies the criteria above. But there's no reason why there can only be one example from *Project Y*. Please [suggest adding another example](https://github.com/ainzzorl/goodcode/issues/new?assignees=&labels=new+example&template=new-example-proposal.md&title=%5BNEW+EXAMPLE%5D+PROJECT+-+TITLE).
 
 # Contributing
 
