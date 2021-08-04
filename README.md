@@ -37,6 +37,12 @@ The reader is expected to be able to read non-trivial code in the language used 
 * Applications of common patterns.
 * Battle-tested solutions to typical problems.
 
+### Why so few examples?
+
+You'd be surprised how much time and effort it takes to find examples meeting our criteria, understand and then explain them. If it was easy, this project would add no value.
+
+We are working on adding more. See [proposed examples](https://github.com/ainzzorl/goodcode/issues?q=is%3Aopen+is%3Aissue+label%3A%22new+example%22).
+
 ### Who writes these articles?
 
 The founder of the project, [Anton Emelyanov](https://github.com/ainzzorl). Future content is expected to be crowd-sourced. Read more about [contributing to the project](#contributing).
