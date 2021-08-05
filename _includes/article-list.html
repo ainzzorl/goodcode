@@ -1,4 +1,4 @@
-{% assign articles = site["articles"] %}
+{% assign articles = site["articles"] | sort:"nav_order" %}
 
 <h1> {{ include.name }} </h1>
   <table>
@@ -9,28 +9,30 @@
           <th>Tags</th>
       </tr>
       {%- for article in articles -%}
-        {%- if include.project-key == null or article.project.key == include.project-key -%}
-        {%- if include.language == null or article.language == include.language -%}
-        {%- if include.tag == null or article.tags contains include.tag -%}
-        <tr>
-            <td>
-                <a href="{{ site.baseurl }}{{ article.id }}">{{ article.title }}</a>
-            </td>
-            <td>
-                <a href="{{ site.baseurl }}/projects/{{ article.project.key }}">{{ article.project.name }}</a>
-            </td>
-            <td>
-                <a href="{{ site.baseurl }}/languages/{{ article.language }}">{{ article.language }}</a>
-            </td>
-            <td>
-                {%- for tag in article.tags -%}
-                    <a href="{{ site.baseurl }}/tags/{{ tag }}">#{{ tag }}</a>
-                    {{ " " }}
-                {%- endfor -%}
-            </td>
-        </tr>
-        {%- endif -%}
-        {%- endif -%}
-        {%- endif -%}
+        {%- unless article.nav_exclude -%}
+            {%- if include.project-key == null or article.project.key == include.project-key -%}
+            {%- if include.language == null or article.language == include.language -%}
+            {%- if include.tag == null or article.tags contains include.tag -%}
+            <tr>
+                <td>
+                    <a href="{{ site.baseurl }}{{ article.id }}">{{ article.title }}</a>
+                </td>
+                <td>
+                    <a href="{{ site.baseurl }}/projects/{{ article.project.key }}">{{ article.project.name }}</a>
+                </td>
+                <td>
+                    <a href="{{ site.baseurl }}/languages/{{ article.language }}">{{ article.language }}</a>
+                </td>
+                <td>
+                    {%- for tag in article.tags -%}
+                        <a href="{{ site.baseurl }}/tags/{{ tag }}">#{{ tag }}</a>
+                        {{ " " }}
+                    {%- endfor -%}
+                </td>
+            </tr>
+            {%- endif -%}
+            {%- endif -%}
+            {%- endif -%}
+        {%- endunless -%}
       {%- endfor -%}
 </table>
