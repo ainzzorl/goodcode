@@ -6,6 +6,7 @@ nav_order: 5
 
 status: PUBLISHED
 language: TypeScript
+short-title: Computing Diff Between Infrastructure Templates
 project:
   name: AWS CDK
   key: aws-cdk

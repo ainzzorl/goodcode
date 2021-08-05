@@ -6,6 +6,7 @@ nav_order: 11
 
 status: PUBLISHED
 language: Rust
+short-title: Rate Limiting
 project:
   name: Firecracker
   key: firecracker

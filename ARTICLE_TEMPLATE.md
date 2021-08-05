@@ -6,6 +6,7 @@ nav_order: BIGGEST-USED-NAV-ORDER + 1
 
 status: DRAFT
 language: e.g. Java
+short-title: title without the name of the project and the language
 project:
     name: e.g. Project Foo
     key: e.g. foo. It must be unique across all projects in the catalog.

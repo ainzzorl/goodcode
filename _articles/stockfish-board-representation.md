@@ -6,6 +6,7 @@ nav_order: 6
 
 status: PUBLISHED
 language: C++
+short-title: Chess Board Representation
 project:
     name: Stockfish
     key: stockfish

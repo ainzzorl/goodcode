@@ -6,6 +6,7 @@ nav_order: 2
 
 status: PUBLISHED
 language: Java
+short-title: Testing Bug Checkers
 project:
   name: Error Prone
   key: error-prone

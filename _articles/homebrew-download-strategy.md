@@ -6,6 +6,7 @@ nav_order: 1
 
 status: PUBLISHED
 language: Ruby
+short-title: Downloading Software From a Variety of Sources
 project:
   name: Homebrew
   key: homebrew

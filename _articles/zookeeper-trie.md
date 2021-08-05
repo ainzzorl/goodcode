@@ -6,6 +6,7 @@ nav_order: 9
 
 status: PUBLISHED
 language: Java
+short-title: Trie
 project:
     name: Apache ZooKeeper
     key: zookeeper

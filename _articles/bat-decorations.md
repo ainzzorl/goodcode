@@ -6,6 +6,7 @@ nav_order: 8
 
 status: PUBLISHED
 language: Rust
+short-title: Text Decoration
 project:
   name: Bat
   key: bat

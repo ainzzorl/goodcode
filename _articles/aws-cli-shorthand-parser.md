@@ -6,6 +6,7 @@ nav_order: 7
 
 status: PUBLISHED
 language: Python
+short-title: Shorthand Parser
 project:
   name: AWS CLI
   key: aws-cli

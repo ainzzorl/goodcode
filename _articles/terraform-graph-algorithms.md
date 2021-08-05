@@ -6,6 +6,7 @@ nav_order: 3
 
 status: PUBLISHED
 language: Go
+short-title: Graph Algorithms
 project:
     name: Terraform
     key: terraform

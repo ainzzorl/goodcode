@@ -6,6 +6,7 @@ nav_order: 4
 
 status: PUBLISHED
 language: Go
+short-title: MySQL-backed Store for Schedules and Terminations
 project:
   name: Chaos Monkey
   key: chaos-monkey

@@ -6,6 +6,7 @@ nav_order: 10
 
 status: PUBLISHED
 language: Python
+short-title: Reporting Download Progress
 project:
     name: HTTPie
     key: httpie
