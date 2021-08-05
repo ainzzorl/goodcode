@@ -1,7 +1,10 @@
 {% assign articles = site["articles"] | sort:"nav_order" %}
 
-<h1> {{ include.name }} </h1>
-  <table>
+{%- if include.name -%}
+    <h1>{{ include.name }}</h1>
+{%- endif -%}
+
+<table>
       <tr>
           <th>Title</th>
           <th>Project</th>
