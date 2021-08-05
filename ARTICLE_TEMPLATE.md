@@ -1,9 +1,11 @@
 ---
 title:  "PROJECT-NAME - EXAMPLE-NAME [LANGUAGE]"
 layout: default
-language: e.g. Java
+last_modified_date: 20XX-XX-XXTXX:XX:XX+XXXX
+nav_order: BIGGEST-USED-NAV-ORDER + 1
 
 status: DRAFT
+language: e.g. Java
 project:
     name: e.g. Project Foo
     key: e.g. foo. It must be unique across all projects in the catalog.
