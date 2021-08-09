@@ -49,13 +49,13 @@ just_the_docs:
       nav_exclude: false
       search_exclude: false
 
-    projects:
-      name: By Project
+    languages:
+      name: By Language
       nav_exclude: false
       search_exclude: false
 
-    languages:
-      name: By Language
+    projects:
+      name: By Project
       nav_exclude: false
       search_exclude: false
 
