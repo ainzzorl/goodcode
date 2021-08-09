@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "New Article: Test Sequencing in Jest"
+date:   2021-08-09 20:19:00 +0300
+---
+
+<article>
+  <h2>
+    <a href="{{ site.baseurl }}{{ page.url }}">
+      {{ page.title }}
+    </a>
+  </h2>
+  <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_long_string }}</time>
+
+  <p>
+    A <a href="{{ site.baseurl }}/articles/jest-test-sequencer">new article</a> about ordering tests in <a href="https://jestjs.io/">Jest</a> has been added to the catalog.
+  </p>
+
+  <p>
+      The code is written in TypeScript and attempts to improve user-perceived responsiveness and speed of the test run. It's achieved by prioritizing tests that failed during the last run and slower tests.
+  </p>
+
+  <p>
+    <a href="{{ site.baseurl }}/articles/jest-test-sequencer">Jest - Test Sequencer</a>
+  </p>
+</article>
+
+
