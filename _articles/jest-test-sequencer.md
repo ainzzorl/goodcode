@@ -38,7 +38,7 @@ And if that information is not available, they are sorted based on file size sin
 
 ## Implementation details
 
-The [sorting method](https://github.com/facebook/jest/blob/master/packages/jest-test-sequencer/src/index.ts#L86-L113) implementing the logic described above. The code is straighforward enough to not require further explanation.
+The [sorting method](https://github.com/facebook/jest/blob/master/packages/jest-test-sequencer/src/index.ts#L86-L113) implementing the logic described above. The code is straightforward enough to not require further explanation.
 
 Note that newly added tests will run after failed tests but before the rest of other tests.
 
