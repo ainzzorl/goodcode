@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "New Article: HTTP Connection Pooling in Puppet"
+date:  2021-08-10T12:11:00+0300
+---
+
+<article>
+  <h2>
+    <a href="{{ site.baseurl }}{{ page.url }}">
+      {{ page.title }}
+    </a>
+  </h2>
+  <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_long_string }}</time>
+
+  <p>
+    A <a href="{{ site.baseurl }}/articles/puppet-connection-pool">new article</a> about connection pools in <a href="https://puppet.com/">Puppet</a> has been added to the catalog.
+  </p>
+
+  <p>
+      The code is written in Ruby. Its goal is to avoid making a new TCP connection and SSL handshake for each request by reusing persistent connections.
+  </p>
+
+  <p>
+    <a href="{{ site.baseurl }}/articles/puppet-connection-pool">Puppet - HTTP Connection Pool</a>
+  </p>
+</article>
+
+
