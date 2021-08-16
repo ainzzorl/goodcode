@@ -40,7 +40,7 @@ Some terms necessary to understand the code:
 * [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) - Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular board position of a chess game.
 * [Pseudo-legal move](https://www.chessprogramming.org/Pseudo-Legal_Move) - is legal in the sense that it is consistent with the current board representation it is assigned to, but may still be illegal if they leave the own king in check.
 
-More techniques (you should know what they are, but it's not at all necessary to undestand how they work to understand this article):
+More techniques (you should know what they are, but it's not at all necessary to understand how they work to understand this article):
 * [Piece-Square Tables](https://www.chessprogramming.org/Piece-Square_Tables) - a simple way to assign values to specific pieces on specific squares. A table is created for each piece of each color, and values assigned to each square.
 * [NNUE (ƎUИИ Efficiently Updatable Neural Networks)](https://www.chessprogramming.org/NNUE) - a Neural Network architecture intended to replace the evaluation of Shogi, chess and other board game playing alpha-beta searchers running on a CPU.
 * [Zobrist Hashing](https://www.chessprogramming.org/Zobrist_Hashing) - a technique to transform a board position of arbitrary size into a number of a set length, with an equal distribution over all possible numbers.
@@ -144,7 +144,7 @@ Note the special type `ALL_PIECES` used by `byTypeBB` and `pieceCount`.
 
 ### [Making a move](https://github.com/official-stockfish/Stockfish/blob/8fc297c50647317185d4c41b3443a0e686412681/src/position.cpp#L679-L893)
 
-Overall structure (some parts ommitted):
+Overall structure (some parts omitted):
 * Check preconditions.
 * Initialize new [`StateInfo`](https://github.com/official-stockfish/Stockfish/blob/2046d5da30b2cd505b69bddb40062b0d37b43bc7/src/position.h#L38-L62) - a structure that stores information needed to restore a `Position` object to its previous state when we retract a move.
 * Increment move counters.

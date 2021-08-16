@@ -399,7 +399,7 @@ public void findMaxPrefixChildrenPrefix() {
 
 ## Observations
 
-* [Deques](https://en.wikipedia.org/wiki/Double-ended_queue) [are used](https://github.com/apache/zookeeper/blob/e642a325b91ab829aefa47708c7b4b45811d2d23/zookeeper-server/src/main/java/org/apache/zookeeper/common/PathTrie.java#L324-L330) to temporarily store values in paths from nodes up to the root. Deques are designed to support element insertion and removal at both ends, but this implementation only adds elements to the front and never removes elements. So a simple `LinkedList` would do. However, `ArrayDeque` may be more performant.
+* [Deques](https://en.wikipedia.org/wiki/Double-ended_queue) [are used](https://github.com/apache/zookeeper/blob/e642a325b91ab829aefa47708c7b4b45811d2d23/zookeeper-server/src/main/java/org/apache/zookeeper/common/PathTrie.java#L324-L330) to temporarily store values in paths from nodes up to the root. Deques are designed to support element insertion and removal at both ends, but this implementation only adds elements to the front and never removes elements. So a simple `LinkedList` would do. However, `ArrayDeque` may be more efficient.
 
 ## References
 
