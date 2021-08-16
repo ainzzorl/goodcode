@@ -22,5 +22,5 @@ Thank you for considering contributing to Code Catalog. This project cannot succ
 
 ### Do you want to write a new article?
 
-* First, propose it in an issue. Don't start writing the article until you got positive feedback from a mantainer.
+* First, propose it in an issue. Don't start writing the article until you got positive feedback from a maintainer.
 * Start writing from the [article template](./ARTICLE_TEMPLATE.md). When it's ready, open a new pull request.

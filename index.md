@@ -7,7 +7,7 @@ title: A curated collection of annotated code examples from prominent open-sourc
 
 When you ask someone how to get better at coding, the second most common response - right after writing more code - is to read other people's code and learn from it.
 
-While it sounds very reasonable, it's hard to implement it in practice. So you find the source for your favorite software on GitHub and start reading it. Firstly, for any established and mature product, the codebase is probably huge, complex and very hard to get started with. It's unlikely that the design is documented anywhere. Even if the high-level architecture is documented, the structure of the codebase almost certainly isn't. It probably depends on some libraries and frameworks you've never heard of. Unfamiliar terms and creative codenames are all over the place. Making sense of it can be a challenge even for seasoned professionals. And how do you even start exploring the code? Open a random source file?
+While it sounds very reasonable, it's hard to implement it in practice. So you find the source for your favorite software on GitHub and start reading it. Firstly, for any established and mature product, the codebase is probably huge, complex and very hard to get started with. It's unlikely that the design is documented anywhere. Even if the high-level architecture is documented, the structure of the codebase almost certainly isn't. It probably depends on some libraries and frameworks you've never heard of. Unfamiliar terms and creative code names are all over the place. Making sense of it can be a challenge even for seasoned professionals. And how do you even start exploring the code? Open a random source file?
 
 It doesn't mean that you should not try to understand good open source projects. You should, and the experience can be very rewarding. Yet, it's not an easy way, and the learning curve will be steep. 
 
@@ -19,7 +19,7 @@ It doesn't mean that you should not try to understand good open source projects.
 * **Non-trivial**.
 * **Good code!** At least in our opinion.
 
-Please note that the annotations are written by people who did not author the code they are describing. The article author's understanding of the code can be incomplete or even completely wrong. Your discretion is adviced.
+Please note that the annotations are written by people who did not author the code they are describing. The article author's understanding of the code can be incomplete or even completely wrong. Your discretion is advised.
 
 # Catalog
 
@@ -29,7 +29,7 @@ Please note that the annotations are written by people who did not author the co
 
 ### Who is this project for?
 
-Software practicioners and intermediate+ learners of programming.
+Software practitioners and intermediate+ learners of programming.
 
 The reader is expected to be able to read non-trivial code in the language used by the example. Most examples expect little domain knowledge and provide context necessary to understand them.
 
