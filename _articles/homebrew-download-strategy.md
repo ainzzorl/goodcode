@@ -1,7 +1,7 @@
 ---
 title:  "Homebrew - Downloading Software From a Variety of Sources [Ruby]"
 layout: default
-last_modified_date: 2021-08-01T18:22:00+0300
+last_modified_date: 2021-08-26T18:50:00+0300
 nav_order: 1
 
 status: PUBLISHED
@@ -18,7 +18,7 @@ tags: [strategy, template-method]
 
 ## Context
 
-Homebrew is "The Missing Package Manager for macOS (or Linux)". It offers a command line interface with commands like `brew install <package>`.
+Homebrew is *The Missing Package Manager for macOS (or Linux)*. It offers a command line interface with commands like `brew install <package>`.
 
 Available packages are described with Ruby **formulae** that include download URLs and source code repositories, e.g.
 
@@ -30,13 +30,13 @@ class Python3 < Formula
   head "https://hg.python.org/cpython", :using => :hg
 ```
 
-Formulae can also include URLs of resources the package depends on.
+Formulae can also include URLs of their dependencies.
 
 ## Problem
 
-Homebrew needs to download and unpack the resource from the specified location, but how to do it depends on the exact URL. For instance, downloading a tarball is not the same as downloading repository content from GitHub. Some resources need to be unpacked, some don't.
+Homebrew needs to download and unpack the resource from the specified location, but how to do it depends on the exact URL. For instance, some formulae require downloading archives with `curl`; some other require cloning repositories from version control systems such as Git or Mercurial. Some resources need to be unpacked, some don't.
 
-Homebrew is expected to figure out how to download the resource automatically, formulae authors should be allowed to explicitly specify the right way to download and unpack the resource.
+Homebrew is expected to figure out how to download the resource automatically, but formulae authors should be allowed to explicitly specify the right mechanism to download and unpack the resource.
 
 ## Overview
 
