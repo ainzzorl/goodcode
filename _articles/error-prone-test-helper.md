@@ -1,7 +1,7 @@
 ---
 title:  "Error Prone - Testing Bug Checkers [Java]"
 layout: default
-last_modified_date: 2021-08-01T18:24:00+0300
+last_modified_date: 2021-09-01T17:57:00+0300
 nav_order: 2
 
 status: PUBLISHED
@@ -18,9 +18,9 @@ tags: [dsl, test-helper, builder]
 
 ## Context
 
-Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.
+[Error Prone](https://errorprone.info) is a static analysis tool for Java that catches common programming mistakes at compile-time.
 
-It's comprised of hundreds of different checkers searching for different types of defects. Checkers inherit the same base class [`BugChecker`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/check_api/src/main/java/com/google/errorprone/bugpatterns/BugChecker.java#). In the nutshell, the interface for a checker is *unit of code (class, method, etc.) in - findings out*.
+Error Prone is comprised of hundreds of different checkers searching for different types of defects. Checkers inherit the same base class [`BugChecker`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/check_api/src/main/java/com/google/errorprone/bugpatterns/BugChecker.java#). In the nutshell, the interface for a checker is *unit of code (class, method, etc.) in - findings out*.
 
 ## Problem
 
@@ -30,9 +30,9 @@ There must be an easy and uniform way to test checkers. Tests must be easy to re
 
 Error Prone implements a helper class, [`CompilationTestHelper`](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java), to simplify writing bug checkers.
 
-It is initialized with the checker under test and accepts source code to run the checker on. That code can either be inlined in the test, or read from another file.
+It is initialized with the checker under test and accepts source code to run the checker on. That code can either be inlined in the test or read from another file.
 
-The test author annotates the input code with comments marking where the checker must fire and what it must output.
+The test's author annotates the input code with comments marking where the checker must fire and what it must output.
 
 `CompilationTestHelper` then runs the checker on the provided code and compares its output with the expectation extracted from the marker comments.
 
@@ -94,7 +94,7 @@ public class ComparableTypeTest {
 }
 ```
 
-The interface of the test helper is very instructive and reusable; its implementation - not so much.
+Unlike typical unit tests that interact with the public interface of the code under test, these Error Prone bug checkers' tests interact with the code under test in a very indirect way. They follow they [black-box approach](https://en.wikipedia.org/wiki/Black-box_testing) and make no assumptions about the checker's implementation.
 
 ## Implementation details
 
@@ -132,7 +132,7 @@ The interface of the test helper is very instructive and reusable; its implement
   }
 ```
 
-Main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java#L293-L346) that compiles the supplied code and compares the output to the expectations:
+The main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/CompilationTestHelper.java#L293-L346) that compiles the supplied code and compares the output to the expectations:
 ```java
   /** Performs a compilation and checks that the diagnostics and result match the expectations. */
   public void doTest() {
@@ -191,7 +191,7 @@ Main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a
   }
 ```
 
-[Extracting markers from code and comparing them to the actual results](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/DiagnosticTestHelper.java#L275-L353):
+[Extracting markers](https://github.com/google/error-prone/blob/c601758e81723a8efc4671726b8363be7a306dce/test_helpers/src/main/java/com/google/errorprone/DiagnosticTestHelper.java#L275-L353) from code and comparing them to the actual results:
 
 ```java
   /**
@@ -275,20 +275,16 @@ Main [`doTest` method](https://github.com/google/error-prone/blob/c601758e81723a
   }
 ```
 
-
-## Observations
-
-- Unit tests usually interact with the public interface of the code under test, but here the test interacts with the code under test in a very indirect way - it only supplies it to the helper class, which also sends it through more levels of indirection.
-
 ## Related
 
-Many related products - linters, bug checkers, etc. - implement very similar patterns.
+Many related products - linters, bug checkers, etc. - implement very similar patterns. For example, see SonarQube's [CheckVerifier](https://github.com/SonarSource/sonar-java/blob/434f170b9667df33eb7355c0e7e62147c48a7da8/java-checks-testkit/src/main/java/org/sonar/java/checks/verifier/CheckVerifier.java#) or Rubocop's [ExpectOffence](https://github.com/rubocop/rubocop/blob/dc858b7ba893ffeae5edfe7b8012d8f13afd6903/lib/rubocop/rspec/expect_offense.rb).
 
-E.g. SonarQube's [CheckVerifier](https://github.com/SonarSource/sonar-java/blob/434f170b9667df33eb7355c0e7e62147c48a7da8/java-checks-testkit/src/main/java/org/sonar/java/checks/verifier/CheckVerifier.java#), Rubocop's [ExpectOffence](https://github.com/rubocop/rubocop/blob/dc858b7ba893ffeae5edfe7b8012d8f13afd6903/lib/rubocop/rspec/expect_offense.rb).
+Some other Java code analysis tools are built on top of Error Prone, making use of its extensible design. For example, Uber's [NullAway](https://github.com/uber/NullAway). NullAway also uses Error Prone's test helper, e.g. [here](https://github.com/uber/NullAway/blob/067c31dca42a7d2302c3058cb7a626bc02574c39/nullaway/src/test/java/com/uber/nullaway/NullAwayTest.java#L294-L331).
 
 ## References
 
 * [GitHub Repo](https://github.com/google/error-prone)
+* [Error Prone](https://errorprone.info)
 * [Writing a check](https://github.com/google/error-prone/wiki/Writing-a-check)
 
 ## Copyright notice
