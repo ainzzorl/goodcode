@@ -779,6 +779,10 @@ func TestAcyclicGraphRoot_multiple(t *testing.T) {
 
 See more tests in [dag_test.go](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/dag_test.go), [graph_test.go](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/graph_test.go), [tarjan_test.go](https://github.com/hashicorp/terraform/blob/72a7c953535b1d7f4dadf39649da3f5563ad5354/internal/dag/tarjan_test.go).
 
+## Related
+
+See our article about [graph algorithms in Puppet]({{ site.baseurl }}/articles/puppet-graph-algorithms). [Puppet](https://puppet.com) is another open-source infrastructure management tool, albeit its use cases are quite different than Terraform's. It implements many of the same ideas for similar purposes, but in Ruby.
+
 ## References
 
 * [GitHub Repo](https://github.com/hashicorp/terraform)
