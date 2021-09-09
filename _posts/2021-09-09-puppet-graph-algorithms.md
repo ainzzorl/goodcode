@@ -15,3 +15,5 @@ We discuss how Puppet uses standard graph algorithms, such as [Tarjan's](https:/
 The code is written in Ruby.
 
 [Puppet - Graph Algorithms]({{ site.baseurl }}/articles/puppet-graph-algorithms)
+
+{% include need-your-help.html %}
