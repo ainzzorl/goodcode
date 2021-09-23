@@ -18,28 +18,29 @@ tags: [data-access, sql, dao, chaos-engineering]
 
 ## Context
 
-Chaos Monkey randomly terminates virtual machine instances and containers that run inside of your production environment. Exposing engineers to failures more frequently incentivizes them to build resilient services. Chaos Monkey is an example of a tool that follows the [Principles of Chaos Engineering](https://principlesofchaos.org/).
+*Chaos Monkey randomly terminates virtual machine instances and containers that run inside of your production environment. Exposing engineers to failures more frequently incentivizes them to build resilient services. Chaos Monkey is an example of a tool that follows the [Principles of Chaos Engineering](https://principlesofchaos.org/).*
+
+Chaos Monkey uses [MySQL](https://www.mysql.com/) to store termination schedules and performed instance terminations.
 
 ## Problem
 
-Chaos Monkey stores performed instance terminations and termination schedules in MySQL. The persistence logic should be separated from the rest of the application.
+It's often considered a good practice to separate application logic from persistence. How is it done in Chaos Monkey?
 
 ## Overview
 
-The persistence logic resides in [`MySQL` struct](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42) and its methods. This is a variation of the [Data Access Object (DAO)](https://www.oracle.com/java/technologies/dataaccessobject.html) pattern. It provides a convenient interface to the application and hides the details of the persistence logic.
+The persistence logic of Chaos Monkey is encapsulated in the [`MySQL` struct](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42). It'a a variation of the [Data Access Object (DAO)](https://www.oracle.com/java/technologies/dataaccessobject.html) pattern or of the [Repository](https://martinfowler.com/eaaCatalog/repository.html) pattern. The [difference](https://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns) between them is rather subtle.
 
-Public methods:
-* `func New(host string, port int, user string, password string, dbname string) (MySQL, error)`
-* `func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error)`
-* `func (m MySQL) Publish(date time.Time, sched *schedule.Schedule) error`
-* `func (m MySQL) PublishWithDelay(date time.Time, sched *schedule.Schedule, delay time.Duration) (err error)`
-* `func (m MySQL) Check(term chaosmonkey.Termination, appCfg chaosmonkey.AppConfig, endHour int, loc *time.Location) error`
-* `func (m MySQL) CheckWithDelay(term chaosmonkey.Termination, appCfg chaosmonkey.AppConfig, endHour int, loc *time.Location, delay time.Duration) error`
-* `func Migrate(mysqlDb MySQL) error`
+The structure provides methods to:
+* Retrieve the schedule for a given date.
+* Publish a schedule.
+* Check if a termination is permitted.
+
+It's common for DAOs and Repositories to try to abstract away the nature of the storage as much as possible. Here, while the interface does not give away the nature of the storage, the name, `MySQL`, does.
 
 ## Implementation details
 
-[Structure definition](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42):
+[Structure definition](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L40-L42). The only field is the underlying database.
+
 ```go
 // MySQL represents a MySQL-backed store for schedules and terminations
 type MySQL struct {
@@ -47,7 +48,8 @@ type MySQL struct {
 }
 ```
 
-[Retrieving the schedule for a given date](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L109-L143):
+[Retrieving the schedule](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L109-L143) for the given date. It runs a [`SELECT`](https://www.w3schools.com/sql/sql_select.asp) statement and maps the results to a `Schedule` object.
+
 ```go
 // Retrieve  retrieves the schedule for the given date
 func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error) {
@@ -86,7 +88,9 @@ func (m MySQL) Retrieve(date time.Time) (sched *schedule.Schedule, err error) {
 }
 ```
 
-[Publishing a schedule](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L145-L212). Note the delay for testing race conditions.
+[Publishing a schedule](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L145-L212). It checks if a schedule for the date already exists and, if it doesn't, runs an `INSERT` statement. Note the delay that allows testing for race conditions.
+
+It could run a little faster if [statements were prepared](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L185-L186) during the [initialization](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L85-L93). Read more about [using prepared statements in Go](https://golang.org/doc/database/prepared-statements).
 
 ```go
 // Publish publishes the schedule for the given date
@@ -160,6 +164,8 @@ func (m MySQL) PublishWithDelay(date time.Time, sched *schedule.Schedule, delay 
 ```
 
 [Checking if a termination is permitted](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L262-L297). The name of the method seems to imply that it's side-effect free, but it actually records the termination time.
+
+It's not obvious that this logic belongs to the persistence layer. Perhaps it was done this way to ensure that the check and the recording are done in the same transaction. 
 
 ```go
 / Check checks if a termination is permitted and, if so, records the
@@ -252,7 +258,7 @@ func TestPublishRetrieve(t *testing.T) {
 }
 ```
 
-[Testing for race conditions](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/schedstore_test.go#L185-L253). Note that Go's [built-in race detector](https://golang.org/doc/articles/race_detector) wouldn't catch race conditions like this.
+[Testing for race conditions](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/schedstore_test.go#L185-L253). Note that Go's [built-in race detector](https://golang.org/doc/articles/race_detector) wouldn't catch race conditions like these.
 
 ```go
 func TestScheduleAlreadyExistsConcurrency(t *testing.T) {
@@ -299,21 +305,16 @@ func TestScheduleAlreadyExistsConcurrency(t *testing.T) {
 }
 ```
 
-## Observations
-
-* It's common for DAOs to try to abstract away the nature of the storage as much as possible. Here, while the interface does not give away the nature of the storage, the name `MySQL` does.
-* It could run a little faster if [statements were prepared](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L185-L186) during the [initialization](https://github.com/Netflix/chaosmonkey/blob/c16d769a82bb765f6544627ef6f08305791e8895/mysql/mysql.go#L85-L93). Read more about [using prepared statements in Go](https://golang.org/doc/database/prepared-statements).
-
-## Related
-
-DAO implementations are [numerous on GitHub](https://github.com/search?q=%22data+access+object%22).
-
 ## References
 
 * [GitHub repo](https://github.com/Netflix/chaosmonkey)
 * [Documentation](https://netflix.github.io/chaosmonkey/)
 * [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering)
 * [Principles of Chaos Engineering](https://principlesofchaos.org/)
+* [Data Access Object (DAO)](https://www.oracle.com/java/technologies/dataaccessobject.html) - Oracle website
+* [Data Access Object (DAO)](https://en.wikipedia.org/wiki/Data_access_object) - Wikipedia
+* [Repository](https://martinfowler.com/eaaCatalog/repository.html) - Martin Fowler's website
+* [Repository](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff649690(v=pandp.10)) - Microsoft website
 
 ## Copyright notice
 
