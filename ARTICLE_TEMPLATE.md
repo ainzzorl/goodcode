@@ -50,6 +50,6 @@ tags: ['whatever', 'tags', 'you', 'find', 'relevant']
 
 ## Copyright notice
 
-*What licence is the project under.*
+*What license is the project under.*
 
 *Who owns the copyright.*
