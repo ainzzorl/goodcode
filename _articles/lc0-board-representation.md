@@ -30,7 +30,15 @@ In this article we only focus on the representation, leaving aside other aspects
 
 ## Overview
 
-_Give an overview of the code. What it does, how it works, what patterns it employs, etc._
+Lc0 has the [`ChessBoard`](https://github.com/LeelaChessZero/lc0/blob/4d89f0870dfe3a33cac36c4d9f2850fcb4e0c179/src/chess/board.h#L60-L272) class representing a chess position. it makes heavy use of [BitBoards](https://www.chessprogramming.org/Bitboards) to store piece positions. It defines methods like `GeneratePseudolegalMoves`, `ApplyMove`, `IsUnderAttack`.
+
+Some terms necessary to understand the code:
+
+- Bitboard ([Chess Programming](https://www.chessprogramming.org/Bitboards), [Wikipedia](https://en.wikipedia.org/wiki/Bitboard)) - bit array data structure, where each bit corresponds to a game board space. This allows parallel bitwise operations to set or query the game state, or determine moves or plays in the game. It's often abbreviated as _BB_ in the code.
+- [Ply](<https://en.wikipedia.org/wiki/Ply_(game_theory)>) - one turn taken by one side.
+- [50 move rule](https://en.wikipedia.org/wiki/Fifty-move_rule) - states that a player can claim a draw if no capture has been made and no pawn has been moved in the last fifty moves.
+- [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) - Forsyth–Edwards Notation (FEN) is a standard notation for describing a particular board position of a chess game.
+- [Pseudo-legal move](https://www.chessprogramming.org/Pseudo-Legal_Move) - is legal in the sense that it is consistent with the current board representation it is assigned to, but may still be illegal if they leave the own king in check.
 
 ## Implementation details
 
