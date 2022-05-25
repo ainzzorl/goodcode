@@ -44,6 +44,51 @@ Some terms necessary to understand the code:
 
 _Dive deeper into the implementation. Include code snippets. Insert them as-is, except remove irrelevant details when necessary. Add permalinks to everything._
 
+### [Declaration](https://github.com/LeelaChessZero/lc0/blob/4d89f0870dfe3a33cac36c4d9f2850fcb4e0c179/src/chess/board.h#L60-L272)
+
+There are, among other, methods to:
+
+[set position from FEN](https://github.com/LeelaChessZero/lc0/blob/4d89f0870dfe3a33cac36c4d9f2850fcb4e0c179/src/chess/board.h#L73-L74)
+
+```c++
+void SetFromFen(std::string fen, int* rule50_ply = nullptr,
+                int* moves = nullptr);
+```
+
+Generate and make moves, check if a move is legal:
+
+```c++
+// Generates list of possible moves for "ours" (white), but may leave king
+// under check.
+MoveList GeneratePseudolegalMoves() const;
+// Applies the move. (Only for "ours" (white)). Returns true if 50 moves
+// counter should be removed.
+bool ApplyMove(Move move);
+// Checks if the square is under attack from "theirs" (black).
+bool IsUnderAttack(BoardSquare square) const;
+// Generates the king attack info used for legal move detection.
+KingAttackInfo GenerateKingAttackInfo() const;
+// Checks if "our" (white) king is under check.
+bool IsUnderCheck() const { return IsUnderAttack(our_king_); }
+
+// Checks whether at least one of the sides has mating material.
+bool HasMatingMaterial() const;
+// Generates legal moves.
+MoveList GenerateLegalMoves() const;
+// Check whether pseudolegal move is legal.
+bool IsLegalMove(Move move, const KingAttackInfo& king_attack_info) const;
+// Returns whether two moves are actually the same move in the position.
+bool IsSameMove(Move move1, Move move2) const;
+// Returns the same move but with castling encoded in legacy way.
+Move GetLegacyMove(Move move) const;
+// Returns the same move but with castling encoded in modern way.
+Move GetModernMove(Move move) const;
+```
+
+Let's look into how some of these methods are implemented.
+
+TODO: bitboard
+
 ## Testing
 
 _Describe how it's tested. Include snippets and links._
