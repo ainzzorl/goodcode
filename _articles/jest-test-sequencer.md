@@ -24,7 +24,7 @@ Jest runs tests in parallel. The number of workers defaults to the number of the
 
 ## Problem
 
-Jest needs to decide which tests should run first. Sorting tests [is very important](https://github.com/facebook/jest/blob/master/packages/jest-test-sequencer/src/index.ts#L69-L70) because it has a great impact on the user-perceived responsiveness and speed of the test run.
+Jest needs to decide which tests should run first. Sorting tests [is very important](https://github.com/facebook/jest/blob/6886eeb667e5e68fc5d8d30c0779d27bdf56c584/packages/jest-test-sequencer/src/index.ts#L140-L154) because it has a great impact on the user-perceived responsiveness and speed of the test run.
 
 ## Overview
 
